@@ -1,1 +1,46 @@
+import tkinter as tk
+from tkinter import messagebox
 
+class BibliotecaEscolar:
+    def __init__(self, master):
+        self.master = master
+        self.master.title("Biblioteca Escolar")
+        
+        self.libros = {}
+        
+        # Etiquetas y entradas
+        tk.Label(master, text="Titulo").grid(row=0, column=0, sticky="w")
+        tk.Label(master, text="Autor").grid(row=1, column=0, sticky="w")
+
+        self.titulo_entry = tk.Entry(master)
+        self.titulo_entry.grid(row=0, column=1, columnspan=2, sticky="ew")
+
+        self.autor_entry = tk.Entry(master)
+        self.autor_entry.grid(row=1, column=1, columnspan=2, sticky="ew")
+
+        # Botones
+        tk.Button(master, text="Agregar Libro", command=self.agregar_libro).grid(row=2, column=0, columnspan=3, pady=10)
+        tk.Button(master, text="Buscar Libro", command=self.buscar_libro).grid(row=3, column=0, columnspan=3, pady=10)
+
+    def agregar_libro(self):
+        titulo = self.titulo_entry.get()
+        autor = self.autor_entry.get()
+        
+        if titulo and autor:
+            self.libros[titulo] = autor
+            messagebox.showinfo("Exito", "Libro agregado correctamente")
+        else:
+            messagebox.showwarning("Error", "Por favor ingresa titulo y autor")
+
+    def buscar_libro(self):
+        titulo = self.titulo_entry.get()
+        if titulo in self.libros:
+            autor = self.libros[titulo]
+            messagebox.showinfo("Resultado", f"Libro encontrado:\nTitulo: {titulo}\nAutor: {autor}")
+        else:
+            messagebox.showinfo("Resultado", "Libro no encontrado")
+
+if __name__=="__main__":
+    root = tk.Tk()
+    app = BibliotecaEscolar(root)
+    root.mainloop()
