@@ -1,0 +1,9 @@
+1.	Instalación de Visual Basic Studio Code
+2.	Creación de carpeta para el proyecto
+3.	Creación de entorno virtual
+4.	Activación del entorno virtual
+5.	Creación de archivo sobre el cual se va a trabajar
+6.	Instalación de librería flet (estructura en el cual se trabajará)
+7.	Importación de librería en el documento de trabajo
+8.	Creación de panel para trabajar y coloración del mismo
+9.	Declaración de elementos de interfaz (limitación de tamaños para los objetos)
