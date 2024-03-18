@@ -7,8 +7,25 @@ async def main(page: ft.Page):
     page.window_resizable = False
     page.padding = 0
 
-    NA= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-    Foto= ft.Container(width=200, height=200, margin=ft.margin.only(top=60, left=200), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=50)
+    TNA = ft.Stack([
+      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.BLUE_300),
+      ft.Text(
+          value="NOMBRE DE LA APP",
+          left=150,
+          top=15,
+          text_align=ft.alignment.center,
+          size=30
+          )
+      
+    ])
+
+    CF = ft.Stack([
+      ft.Container(width=720, height=1280, bgcolor=ft.colors.BLUE_300),
+      ft.Image(src="Mono.jpg")
+    ])
+
+    NA= ft.Container(TNA,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    Foto= ft.Container(CF,width=200, height=200, margin=ft.margin.only(top=60, left=200), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=50)
     Usuario= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
     Contraseña= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
     TPCC= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
