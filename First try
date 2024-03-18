@@ -1,46 +1,28 @@
-import tkinter as tk
-from tkinter import messagebox
+import flet as ft
 
-class BibliotecaEscolar:
-    def __init__(self, master):
-        self.master = master
-        self.master.title("Biblioteca Escolar")
-        
-        self.libros = {}
-        
-        # Etiquetas y entradas
-        tk.Label(master, text="Titulo").grid(row=0, column=0, sticky="w")
-        tk.Label(master, text="Autor").grid(row=1, column=0, sticky="w")
+async def main(page: ft.Page):
+    #page.add(ft.Text(value="Hola mundo"))
+    page.window_width = 720
+    page.window_height = 1280
+    page.window_resizable = False
+    page.padding = 0
 
-        self.titulo_entry = tk.Entry(master)
-        self.titulo_entry.grid(row=0, column=1, columnspan=2, sticky="ew")
+    NA= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    Foto= ft.Container(width=200, height=200, margin=ft.margin.only(top=60, left=200), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=50)
+    Usuario= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    Contraseña= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
+    TPCC= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    IS= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    
+    col= ft.Column(spacing=0, controls=[
+        NA,
+        Foto,
+        Usuario,
+        Contraseña,
+        TPCC,
+        IS,
+    ])
+    contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.BLUE_400,alignment=ft.alignment.top_center)
 
-        self.autor_entry = tk.Entry(master)
-        self.autor_entry.grid(row=1, column=1, columnspan=2, sticky="ew")
-
-        # Botones
-        tk.Button(master, text="Agregar Libro", command=self.agregar_libro).grid(row=2, column=0, columnspan=3, pady=10)
-        tk.Button(master, text="Buscar Libro", command=self.buscar_libro).grid(row=3, column=0, columnspan=3, pady=10)
-
-    def agregar_libro(self):
-        titulo = self.titulo_entry.get()
-        autor = self.autor_entry.get()
-        
-        if titulo and autor:
-            self.libros[titulo] = autor
-            messagebox.showinfo("Exito", "Libro agregado correctamente")
-        else:
-            messagebox.showwarning("Error", "Por favor ingresa titulo y autor")
-
-    def buscar_libro(self):
-        titulo = self.titulo_entry.get()
-        if titulo in self.libros:
-            autor = self.libros[titulo]
-            messagebox.showinfo("Resultado", f"Libro encontrado:\nTitulo: {titulo}\nAutor: {autor}")
-        else:
-            messagebox.showinfo("Resultado", "Libro no encontrado")
-
-if __name__=="__main__":
-    root = tk.Tk()
-    app = BibliotecaEscolar(root)
-    root.mainloop()
+    await page.add_async(contenedor)
+ft.app(target=main)
