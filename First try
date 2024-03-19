@@ -16,19 +16,38 @@ async def main(page: ft.Page):
           text_align=ft.alignment.center,
           size=30
           )
-      
-    ])
+      ])
 
     CF = ft.Stack([
       ft.Container(width=720, height=1280, bgcolor=ft.colors.BLUE_300),
       ft.Image(src="Mono.jpg")
     ])
 
+    TSDU = ft.TextField(
+    hint_text="Usuario",
+    )
+    
+    TSDC = ft.TextField(
+    hint_text="Contraseña",
+    )
+    
+    TDR = ft.Stack([
+      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.BLUE_500),
+      ft.Text(
+          value="¿No tienes cuenta?"+" Registrarse",
+         # value= "Registrarse",
+          left=150,
+          top=15,
+          text_align=ft.alignment.center,
+          size=20
+          )
+      ])
+    
     NA= ft.Container(TNA,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
     Foto= ft.Container(CF,width=200, height=200, margin=ft.margin.only(top=60, left=200), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=50)
-    Usuario= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-    Contraseña= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
-    TPCC= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    Usuario= ft.Container(TSDU,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
+    Contraseña= ft.Container(TSDC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
+    TPCC= ft.Container(TDR,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
     IS= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
     
     col= ft.Column(spacing=0, controls=[
