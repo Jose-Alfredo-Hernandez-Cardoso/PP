@@ -4,3 +4,8 @@ Usuario
 Contraseña
 TPCC=Texto para crear cuenta (¿No tienes cuenta? Registrarse)
 IS=Iniciar sesión
+TNA=Texto de nombre de la app
+CF=Contenido de foto
+TSDU=Texto sombreado de usuario
+TSDC=Texto sombreado de contraseña
+TDR=Texto de registro
