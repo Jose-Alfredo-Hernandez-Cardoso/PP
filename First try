@@ -44,27 +44,21 @@ async def main(page: ft.Page):
       ])
     
     async def usuariovalidao(event):
-        if not TSDU.value:
+        if (not TSDU.value or not TSDC.value):
             TSDU.error_text='Mete el dato puto'
-            page.update()
-        else:
-            user= TSDU.value
-            page.clean()
-            page.add(ft.Text(f'bolas {user}'))
-    async def contravalida(event):
-        if not TSDC.value:
             TSDC.error_text='Mete el dato puta'
             page.update()
         else:
+            user= TSDU.value
             contra=TSDC.value
             page.clean()
-            page.add(ft.Text(f'bolas {contra}'))
+            page.add(ft.Text(f'bolas {user,contra}'))
 
     boton = ft.TextButton(
-      
+        
       text="Iniciar sesión",
       style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
-      on_click=usuariovalidao,
+      on_click=usuariovalidao
       
       #print("Yeah"),   
 #      ft.TextButton(width=30, height=50, top=0, left=0, style=ft.colors.AMBER_100)
