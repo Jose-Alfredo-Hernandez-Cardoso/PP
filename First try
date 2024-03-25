@@ -8,7 +8,7 @@ async def main(page: ft.Page):
     page.padding = 0
 
     TNA = ft.Stack([
-      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.BLUE_300),
+      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
       ft.Text(
           value="NOMBRE DE LA APP",
           left=150,
@@ -25,17 +25,17 @@ async def main(page: ft.Page):
 
     TSDU = ft.TextField(
     hint_text="Usuario",
+    
     )
     
     TSDC = ft.TextField(
-    hint_text="Contraseña",
+    hint_text="Contraseña", password=True, can_reveal_password=True
     )
     
     TDR = ft.Stack([
-      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.BLUE_500),
+      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
       ft.Text(
           value="¿No tienes cuenta?"+" Registrarse",
-         # value= "Registrarse",
           left=150,
           top=15,
           text_align=ft.alignment.center,
@@ -43,12 +43,42 @@ async def main(page: ft.Page):
           )
       ])
     
+    async def usuariovalidao(event):
+        if not TSDU.value:
+            TSDU.error_text='Mete el dato puto'
+            page.update()
+        else:
+            user= TSDU.value
+            page.clean()
+            page.add(ft.Text(f'bolas {user}'))
+    async def contravalida(event):
+        if not TSDC.value:
+            TSDC.error_text='Mete el dato puta'
+            page.update()
+        else:
+            contra=TSDC.value
+            page.clean()
+            page.add(ft.Text(f'bolas {contra}'))
+
+    boton = ft.TextButton(
+      
+      text="Iniciar sesión",
+      style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+      on_click=usuariovalidao,
+      
+      #print("Yeah"),   
+#      ft.TextButton(width=30, height=50, top=0, left=0, style=ft.colors.AMBER_100)
+)
+    
+
+    
+
     NA= ft.Container(TNA,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-    Foto= ft.Container(CF,width=200, height=200, margin=ft.margin.only(top=60, left=200), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=50)
+    Foto= ft.Container(CF,width=200, height=200, margin=ft.margin.only(top=60, left=200), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
     Usuario= ft.Container(TSDU,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
     Contraseña= ft.Container(TSDC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
     TPCC= ft.Container(TDR,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-    IS= ft.Container(width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    IS= ft.Container(boton,width=300, height=80, margin=ft.margin.only(top=40, left=150), border=ft.border.all())
     
     col= ft.Column(spacing=0, controls=[
         NA,
@@ -58,7 +88,18 @@ async def main(page: ft.Page):
         TPCC,
         IS,
     ])
-    contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.BLUE_400,alignment=ft.alignment.top_center)
+    contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+  
+    #if(TSDU == ""):
+   #     {
+  #          print("en ai guander")
+ #      }
 
     await page.add_async(contenedor)
+
+
+   #DDUT= TSDU.__getattribute__
+
+
+ 
 ft.app(target=main)
