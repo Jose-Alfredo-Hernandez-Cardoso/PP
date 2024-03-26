@@ -9,12 +9,12 @@ CF=Contenido de foto
 TSDU=Texto sombreado de usuario
 TSDC=Texto sombreado de contraseña
 TDR=Texto de registro
-
-IDU, ingreso de usuario
-IDC, ingreso de correo
-CDC, creación de contraseña
-NT, número telefónico
-BTCC, botón de crear cuenta
-B,bienvenida
-ESTUPDM, esto solo tomará un par de minutos
-CC, crear cuenta
+BDIS=Botón de iniciar sesión 
+IDU=Ingreso de usuario
+IDC=Ingreso de correo
+CDC=Creación de contraseña
+NT=Número telefónico
+BTCC=Botón de crear cuenta
+B=Bienvenida
+ESTUPDM=Esto solo tomará un par de minutos
+CC=Crear cuenta
