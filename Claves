@@ -9,3 +9,12 @@ CF=Contenido de foto
 TSDU=Texto sombreado de usuario
 TSDC=Texto sombreado de contraseña
 TDR=Texto de registro
+
+IDU, ingreso de usuario
+IDC, ingreso de correo
+CDC, creación de contraseña
+NT, número telefónico
+BTCC, botón de crear cuenta
+B,bienvenida
+ESTUPDM, esto solo tomará un par de minutos
+CC, crear cuenta
