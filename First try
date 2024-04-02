@@ -46,6 +46,61 @@ async def main(page: ft.Page):
             )
         ])
 
+        def metefoto(pagRr : ft.Page):
+            page.clean(),
+            page.add()
+            page.title='Fotico'
+            page.window_width = 720
+            page.window_height = 1280
+            page.window_resizable = True
+            page.padding = 0
+        
+            FOTO = ft.Text(
+            value="aaaaa",
+        )
+     
+            MT = ft.TextButton(
+            
+        text="Sí",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        
+    )
+
+            TF = ft.FilePicker()
+            page.overlay.append(TF)
+                
+  
+            
+            FR = ft.Stack([
+#        ft.Container(width=100, height=80,bgcolor=ft.colors.BLUE_300,),
+
+        ft.IconButton(
+                    icon=ft.icons.ADD_A_PHOTO_ROUNDED,
+                    on_click=lambda _: TF.pick_files(
+                        allow_multiple=True
+                    ),
+                ),      
+
+#      ft.Image(src="Mono.jpg")
+    ])
+            EDF= ft.Container(FOTO,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+            CFR= ft.Container(width=200, height=200, margin=ft.margin.only(top=-185, left=200), border=ft.border.all(),border_radius=200,bgcolor=ft.colors.AMBER_100)
+            CTF= ft.Container(FR,width=40, height=40, margin=ft.margin.only(top=180, left=350), border=ft.border.all(),border_radius=200)
+            
+            col= ft.Column(spacing=0, controls=[
+                EDF,
+                
+                CTF,
+                CFR,
+                
+        ])
+
+            contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+    
+            page.add(contenedor)
+     
+        
+        page.update()
 
         TPF = ft.Stack([
           ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
@@ -58,7 +113,7 @@ async def main(page: ft.Page):
           left=320,
           top=13,
           style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
-          on_click=Registrarse
+          on_click=metefoto
         ),
           ft.Text(
             value="¿Deseas ingresar una",
@@ -152,7 +207,7 @@ async def main(page: ft.Page):
       ])
 
     CF = ft.Stack([
-      ft.Container(width=720, height=1280, bgcolor=ft.colors.BLUE_300),
+      #ft.Container(width=720, height=1280, bgcolor=ft.colors.BLUE_300),
       ft.Image(src="Mono.jpg")
     ])
 
@@ -172,13 +227,126 @@ async def main(page: ft.Page):
             TSDC.error_text='Por favor, ingrese el dato'
             page.update()
         else:
-          user=TSDU.value
-          contra=TSDC.value
-          page.clean()
+          page.clean(),
+          page.add()
+          page.title='Fotico'
+          page.window_width = 720
+          page.window_height = 1280
+          page.window_resizable = True
+          page.padding = 0
+          
 
 
-          page.add(ft.Text(f'bolas {user,contra}'))
-        page.update()   
+          EF = ft.Stack([
+        #ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE, border=ft.border.all(),alignment=ft.alignment.top_center),
+        ft.Text(
+            value="Encontrar fórmula",
+            left=10,
+            top=15,
+#            text_align=ft.alignment.center,
+            size=15,
+            style=ft.TextStyle(color=ft.colors.BLACK)
+            ),
+        ])
+          Settings=ft.Stack([
+          ft.IconButton(
+            icon=ft.icons.SETTINGS_OUTLINED,
+            top=0,
+            left=0,
+            scale=2
+            #on_click=lambda _: TF.pick_files(
+            )])
+          TPPLS=ft.Text("Pasos para la solución")
+          P1=ft.Text("Paso 1")
+          P2=ft.Text("Paso 2")
+          P3=ft.Text("Paso 3")
+          P4=ft.Text("Paso 4")
+          PPLS=ft.Stack([
+            ft.Container(TPPLS,width=200, height=30, margin=ft.margin.only(top=10, left=50), border=ft.border.all(), alignment=ft.alignment.top_center),
+            ft.Container(P1,width=100, height=100, margin=ft.margin.only(top=50, left=100), border=ft.border.all(), alignment=ft.alignment.top_center),
+            ft.Container(P3,width=100, height=100, margin=ft.margin.only(top=250, left=100), border=ft.border.all(), alignment=ft.alignment.top_center),
+            ft.Container(P2,width=100, height=100, margin=ft.margin.only(top=150, left=200), border=ft.border.all(), alignment=ft.alignment.top_center),
+            ft.Container(P4,width=100, height=100, margin=ft.margin.only(top=150, left=0), border=ft.border.all(), alignment=ft.alignment.top_center),
+          ])
+        IP = ft.TextField(
+        hint_text="Ingrese el problema"
+        )
+        PDR= ft.Text(
+            value="Presentación de resultado"
+        )
+        CYPDG= ft.Stack([
+            ft.Text(
+            value="Creación y presentación de la gráfica",
+            top=5,
+            left=30
+        )])        
+        
+        CEF= ft.Container(EF,width=200, height=50, margin=ft.margin.only(top=-50, left=180), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CS = ft.Container(Settings,width=50, height=50, margin=ft.margin.only(top=50, left=550), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CFDU= ft.Container(CF,width=50, height=50, margin=ft.margin.only(top=-50, left=20), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
+        CPPSL=ft.Container(PPLS,width=350, height=400, margin=ft.margin.only(top=-300, left=50), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CIP= ft.Container(IP,width=200, height=50, margin=ft.margin.only(top=100, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CPDR= ft.Container(PDR,width=200, height=150, margin=ft.margin.only(top=100, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CCYPDG= ft.Container(CYPDG,width=300, height=50, margin=ft.margin.only(top=50, left=220), border=ft.border.all(), alignment=ft.alignment.top_center)
+
+        col= ft.Column(spacing=0, controls=[
+        CS,
+        CEF,
+        CFDU,
+        CIP,
+        CPDR,
+        CPPSL,
+        CCYPDG,
+                
+        #Settings,
+        
+        ])
+
+        contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE)
+    #,alignment=ft.alignment.top_center
+        
+        page.add(contenedor)
+
+          #page.add(sesioniniciada)
+        page.update()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def sesioniniciada(pagSI : ft.Page):
+            page.clean(),
+            page.add()
+            page.title='Fotico'
+            page.window_width = 720
+            page.window_height = 1280
+            page.window_resizable = True
+            page.padding = 0
+        
+
+            page.add(ft.Text("bolasssss"))
+    page.update()   
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     TDR = ft.Stack([
