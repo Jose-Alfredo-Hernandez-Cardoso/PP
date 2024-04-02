@@ -9,13 +9,15 @@
 9.	Declaración de elementos de interfaz (limitación de tamaños para los objetos)
 10.	Integración de objetos en elementos de interfaz
 11.	Integración de objetos que permitan el ingreso de datos
-Escritura de textos e indicaciones en los elementos
-Enlazar conexión entre elementos y panel de trabajo
-
-Asignación de acción cuando se presione para ser registrado
-Creación de pantalla en formato para registro
-Declaración de elementos de interfaz (limitación de tamaños para los objetos)
-Integración de objetos en elementos de interfaz
-Integración de objetos que permitan el ingreso de datos
-Escritura de textos e indicaciones en los elementos
-Enlazar conexión entre elementos y panel de trabajo
+12.	Integración de botón
+13.	Limitación para activar el botón (en caso de que los campos no sean llenados, este estará inhabilitado)
+14.	Asignar acción al botón para el reconocimiento de datos
+15. Escritura de textos e indicaciones en los elementos
+16. Enlazar conexión entre elementos y panel de trabajo
+17. Asignación de acción cuando se presione para ser registrado
+18. Creación de pantalla en formato para registro
+19. Declaración de elementos de interfaz (limitación de tamaños para los objetos)
+20. Integración de objetos en elementos de interfaz
+21. Integración de objetos que permitan el ingreso de datos
+22. Escritura de textos e indicaciones en los elementos
+23. Enlazar conexión entre elementos y panel de trabajo
