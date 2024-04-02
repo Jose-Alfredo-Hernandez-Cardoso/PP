@@ -1,20 +1,153 @@
 import flet as ft
-
+#import Sesion
+#import Registro
+#from Registro import maindos
 async def main(page: ft.Page):
-    #page.add(ft.Text(value="Hola mundo"))
+    page.title = "DERIVAME ESTA"
     page.window_width = 720
     page.window_height = 1280
-    page.window_resizable = False
+    page.window_resizable = True
     page.padding = 0
+
+
+    def Registrarse(pagi : ft.Page):
+        #cambio entre clases (páginas)
+        page.clean(),
+        page.add()
+        page.window_width = 720
+        page.window_height = 1280
+        page.window_resizable = True
+        page.padding = 0
+        
+        
+        
+        B = ft.Stack([
+        ft.Container(width=600, height=140, top=0, left=0, bgcolor=ft.colors.WHITE),
+        ft.Text(
+            value="ESTAMOS ORGULLOSOS DE QUE FORMES \n     PARTE DE NUESTRA COMUNIDAD",
+            left=100,
+            top=0,
+            text_align=ft.MainAxisAlignment.CENTER,
+            #ft.alignment.top_center,
+            size=22,
+            style=ft.TextStyle(color=ft.colors.BLACK)
+            )
+        ])
+        
+        ESTUPDM = ft.Stack([
+        ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+        ft.Text(
+            value="Esto solo tomará un par de minutos",
+            left=170,
+            top=15,
+            text_align=ft.alignment.center,
+            size=15,
+            style=ft.TextStyle(color=ft.colors.BLACK)
+            )
+        ])
+
+
+        TPF = ft.Stack([
+          ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+          ft.TextButton(
+          content=ft.Column([
+            ft.Text(value="  foto de perfil?", size=20),
+            ],
+            alignment=ft.MainAxisAlignment.CENTER,
+                  ),
+          left=320,
+          top=13,
+          style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
+          on_click=Registrarse
+        ),
+          ft.Text(
+            value="¿Deseas ingresar una",
+            left=145,
+            top=15,
+            text_align=ft.MainAxisAlignment.CENTER,
+            size=20,
+           style=ft.TextStyle(color=ft.colors.BLACK)
+           ),
+
+       ]) 
+
+
+        IDU = ft.TextField(
+        hint_text="Ingrese el nombre de usuario a utilizar",
+        
+        )
+        
+        IDC = ft.TextField(
+        hint_text="Ingrese el correo electrónico"
+        )
+
+        CDC = ft.TextField(
+        hint_text="Asigna una contraseña", password=True, can_reveal_password=True
+        
+        )
+        
+        NT = ft.TextField(
+        hint_text="Ingrese su número telefónico",
+        )
+
+        async def usuarioregistrado(event):
+            if (not IDU.value or not IDC.value or not CDC.value or not NT.value):
+                IDU.error_text='Por favor, ingrese el dato'
+                IDC.error_text='Por favor, ingrese el dato'
+                CDC.error_text='Por favor, ingrese el dato'
+                NT.error_text='Por favor, ingrese el dato'
+                page.update()
+            else:
+                user= IDU.value
+                correo=IDC.value
+                contra=CDC.value
+                numero=NT.value
+                page.clean()
+                page.add(ft.Text(f'bolas {user,correo,contra,numero}'))
+
+        CC = ft.TextButton(
+            
+        text="Crear cuenta",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        on_click=usuarioregistrado,
+    )
+
+        B= ft.Container(B,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        ESTUPDM= ft.Container(ESTUPDM,width=600, height=80, margin=ft.margin.only(top=0), border=ft.border.all())
+        TPF= ft.Container(TPF,width=600, height=80, margin=ft.margin.only(top=20), bgcolor=ft.colors.AMBER_200, border=ft.border.all())
+        CIDU= ft.Container(IDU,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        CIDC= ft.Container(IDC,width=600, height=80, margin=ft.margin.only(top=60), border=ft.border.all())
+        CCDC= ft.Container(CDC,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
+        CNT= ft.Container(NT,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
+        CBTCC= ft.Container(CC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        
+        col= ft.Column(spacing=0, controls=[
+            B,
+            ESTUPDM,
+            TPF,
+            CIDU,
+            CIDC,
+            CCDC,
+            CNT,
+            CBTCC
+        ])
+
+        contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+    
+        
+        page.add(contenedor)
+        #pagi.add()
+    page.update()
 
     TNA = ft.Stack([
       ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
       ft.Text(
-          value="NOMBRE DE LA APP",
-          left=150,
+          value="DERIVAME ESTA",
+          left=200,
           top=15,
           text_align=ft.alignment.center,
-          size=30
+          size=30,
+          style=ft.TextStyle(color=ft.colors.BLACK)
           )
       ])
 
@@ -28,52 +161,64 @@ async def main(page: ft.Page):
     
     )
     
-    TSDC = ft.TextField(
+    TSDC = ft.TextField( 
     hint_text="Contraseña", password=True, can_reveal_password=True
     )
-    
-    TDR = ft.Stack([
-      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
-      ft.Text(
-          value="¿No tienes cuenta?"+" Registrarse",
-          left=150,
-          top=15,
-          text_align=ft.alignment.center,
-          size=20
-          )
-      ])
-    
+
+
     async def usuariovalidao(event):
         if (not TSDU.value or not TSDC.value):
-            TSDU.error_text='Mete el dato puto'
-            TSDC.error_text='Mete el dato puta'
+            TSDU.error_text='Por favor, ingrese el dato'
+            TSDC.error_text='Por favor, ingrese el dato'
             page.update()
         else:
-            user= TSDU.value
-            contra=TSDC.value
-            page.clean()
-            page.add(ft.Text(f'bolas {user,contra}'))
+          user=TSDU.value
+          contra=TSDC.value
+          page.clean()
 
-    boton = ft.TextButton(
+
+          page.add(ft.Text(f'bolas {user,contra}'))
+        page.update()   
+
+
+    TDR = ft.Stack([
+      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+      ft.TextButton(
+      content=ft.Column([
+        ft.Text(value="Registrarse", size=20),
+        ],
+        alignment=ft.MainAxisAlignment.CENTER,
+                ),
+      left=320,
+      top=12,
+      style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
+      on_click=Registrarse
+    ),
+      ft.Text(
+          value="¿No tienes cuenta?",
+          left=145,
+          top=15,
+          text_align=ft.MainAxisAlignment.CENTER,
+          size=20,
+          style=ft.TextStyle(color=ft.colors.BLACK)
+          ),
+
+      ]) 
+
+    BDIS = ft.TextButton(
         
       text="Iniciar sesión",
       style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
-      on_click=usuariovalidao
-      
-      #print("Yeah"),   
-#      ft.TextButton(width=30, height=50, top=0, left=0, style=ft.colors.AMBER_100)
-)
+     on_click=usuariovalidao,
+     )
     
-
-    
-
     NA= ft.Container(TNA,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
     Foto= ft.Container(CF,width=200, height=200, margin=ft.margin.only(top=60, left=200), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
     Usuario= ft.Container(TSDU,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
     Contraseña= ft.Container(TSDC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
     TPCC= ft.Container(TDR,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-    IS= ft.Container(boton,width=300, height=80, margin=ft.margin.only(top=40, left=150), border=ft.border.all())
-    
+    IS= ft.Container(BDIS,width=300, height=80, margin=ft.margin.only(top=40, left=150), border=ft.border.all())
+
     col= ft.Column(spacing=0, controls=[
         NA,
         Foto,
@@ -82,18 +227,8 @@ async def main(page: ft.Page):
         TPCC,
         IS,
     ])
+
     contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
-  
-    #if(TSDU == ""):
-   #     {
-  #          print("en ai guander")
- #      }
-
     await page.add_async(contenedor)
-
-
-   #DDUT= TSDU.__getattribute__
-
-
  
-ft.app(target=main)
+ft.app(target=main)#,view=ft.WEB_BROWSER)
