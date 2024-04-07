@@ -12,14 +12,15 @@ async def main(page: ft.Page):
 
     def Registrarse(pagi : ft.Page):
         #cambio entre clases (páginas)
+        TSDU.value="Llenado"
+        TSDC.value="Llenado"
         page.clean(),
+        page.title = "REGISTRO"
         page.add()
         page.window_width = 720
         page.window_height = 1280
         page.window_resizable = True
-        page.padding = 0
-        
-        
+        page.padding = 0   
         
         B = ft.Stack([
         ft.Container(width=600, height=140, top=0, left=0, bgcolor=ft.colors.WHITE),
@@ -127,38 +128,47 @@ async def main(page: ft.Page):
        ]) 
 
 
-        IDU = ft.TextField(
-        hint_text="Ingrese el nombre de usuario a utilizar",
         
-        )
-        
-        IDC = ft.TextField(
-        hint_text="Ingrese el correo electrónico"
-        )
 
-        CDC = ft.TextField(
-        hint_text="Asigna una contraseña", password=True, can_reveal_password=True
-        
-        )
-        
-        NT = ft.TextField(
-        hint_text="Ingrese su número telefónico",
-        )
 
-        async def usuarioregistrado(event):
-            if (not IDU.value or not IDC.value or not CDC.value or not NT.value):
+
+
+
+
+
+
+
+        def usuarioregistrado(event):
+            if (IDU.value and IDC.value and CDC.value and NT.value):
+                
+                    page.clean()
+#                page.add(usuariovalidao)
+                    AAAAAA=ft.TextButton(
+                    text="Crear cuenta",
+                    style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+                    on_click=usuariovalidao
+                    )
+                    AAA= ft.Container(AAAAAA,width=300, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+#                    ft.ElevatedButton("Go to Store", on_click=usuariovalidao))
+                    col= ft.Column(spacing=0, controls=[
+                    AAA
+                    ])
+                    contr = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+                    page.add(contr)
+                    page.update()
+            else:
                 IDU.error_text='Por favor, ingrese el dato'
                 IDC.error_text='Por favor, ingrese el dato'
                 CDC.error_text='Por favor, ingrese el dato'
                 NT.error_text='Por favor, ingrese el dato'
                 page.update()
-            else:
-                user= IDU.value
-                correo=IDC.value
-                contra=CDC.value
-                numero=NT.value
-                page.clean()
-                page.add(ft.Text(f'bolas {user,correo,contra,numero}'))
+                
+
+
+
+
+
+
 
         CC = ft.TextButton(
             
@@ -193,11 +203,29 @@ async def main(page: ft.Page):
         page.add(contenedor)
         #pagi.add()
     page.update()
+    
+    IDU = ft.TextField(
+        hint_text="Ingrese el nombre de usuario a utilizar",
+        
+        )
+        
+    IDC = ft.TextField(
+        hint_text="Ingrese el correo electrónico"
+        )
+
+    CDC = ft.TextField(
+        hint_text="Asigna una contraseña", password=True, can_reveal_password=True
+        
+        )
+        
+    NT = ft.TextField(
+        hint_text="Ingrese su número telefónico",
+        )
 
     TNA = ft.Stack([
       ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
       ft.Text(
-          value="DERIVAME ESTA",
+          value="NOMBRE DE APP",
           left=200,
           top=15,
           text_align=ft.alignment.center,
@@ -219,25 +247,27 @@ async def main(page: ft.Page):
     TSDC = ft.TextField( 
     hint_text="Contraseña", password=True, can_reveal_password=True
     )
+###################
 
-
-    async def usuariovalidao(event):
-        if (not TSDU.value or not TSDC.value):
+    def usuariovalidao(event):
+        IDU.value="Llenado"
+        IDC.value="Llenado"
+        CDC.value="Llenado"
+        NT.value="Llenado"
+        if (not TSDU.value or not TSDC.value or not IDU.value or not IDC.value or not CDC.value or not NT.value):
             TSDU.error_text='Por favor, ingrese el dato'
             TSDC.error_text='Por favor, ingrese el dato'
             page.update()
         else:
           page.clean(),
           page.add()
-          page.title='Fotico'
+          page.title='DERIVAR || INTEGRAR'
           page.window_width = 720
           page.window_height = 1280
           page.window_resizable = True
           page.padding = 0
-          
 
-
-          EF = ft.Stack([
+        EF = ft.Stack([
         #ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE, border=ft.border.all(),alignment=ft.alignment.top_center),
         ft.Text(
             value="Encontrar fórmula",
@@ -248,7 +278,7 @@ async def main(page: ft.Page):
             style=ft.TextStyle(color=ft.colors.BLACK)
             ),
         ])
-          Settings=ft.Stack([
+        Settings=ft.Stack([
           ft.IconButton(
             icon=ft.icons.SETTINGS_OUTLINED,
             top=0,
@@ -256,12 +286,12 @@ async def main(page: ft.Page):
             scale=2
             #on_click=lambda _: TF.pick_files(
             )])
-          TPPLS=ft.Text("Pasos para la solución")
-          P1=ft.Text("Paso 1")
-          P2=ft.Text("Paso 2")
-          P3=ft.Text("Paso 3")
-          P4=ft.Text("Paso 4")
-          PPLS=ft.Stack([
+        TPPLS=ft.Text("Pasos para la solución")
+        P1=ft.Text("Paso 1")
+        P2=ft.Text("Paso 2")
+        P3=ft.Text("Paso 3")
+        P4=ft.Text("Paso 4")
+        PPLS=ft.Stack([
             ft.Container(TPPLS,width=200, height=30, margin=ft.margin.only(top=10, left=50), border=ft.border.all(), alignment=ft.alignment.top_center),
             ft.Container(P1,width=100, height=100, margin=ft.margin.only(top=50, left=100), border=ft.border.all(), alignment=ft.alignment.top_center),
             ft.Container(P3,width=100, height=100, margin=ft.margin.only(top=250, left=100), border=ft.border.all(), alignment=ft.alignment.top_center),
@@ -281,13 +311,111 @@ async def main(page: ft.Page):
             left=30
         )])        
         
+
+
+
+
+
+
+
+
+
+        chart = ft.BarChart(
+        bar_groups=[
+            ft.BarChartGroup(
+                x=0,
+                bar_rods=[
+                    ft.BarChartRod(
+                        from_y=0,
+                        to_y=40,
+                        width=40,
+                        color=ft.colors.BLACK,
+                        tooltip="Apple",
+                        border_radius=0,
+                    ),
+                ],
+            ),
+            ft.BarChartGroup(
+                x=1,
+                bar_rods=[
+                    ft.BarChartRod(
+                        from_y=0,
+                        to_y=90,
+                        width=40,
+                        color=ft.colors.BLUE,
+                        tooltip="Blueberry",
+                        border_radius=0,
+                    ),
+                ],
+            ),
+            ft.BarChartGroup(
+                x=2,
+                bar_rods=[
+                    ft.BarChartRod(
+                        from_y=0,
+                        to_y=30,
+                        width=40,
+                        color=ft.colors.RED,
+                        tooltip="Cherry",
+                        border_radius=0,
+                    ),
+                ],
+            ),
+            ft.BarChartGroup(
+                x=3,
+                bar_rods=[
+                    ft.BarChartRod(
+                        from_y=0,
+                        to_y=60,
+                        width=40,
+                        color=ft.colors.ORANGE,
+                        tooltip="Orange",
+                        border_radius=0,
+                    ),
+                ],
+            ),
+        ],
+        border=ft.border.all(1, ft.colors.GREY_400),
+        left_axis=ft.ChartAxis(
+            labels_size=40, title=ft.Text("Fruit supply"), title_size=40
+        ),
+        bottom_axis=ft.ChartAxis(
+            labels=[
+                ft.ChartAxisLabel(
+                    value=0, label=ft.Container(ft.Text("Apple"), padding=10)
+                ),
+                ft.ChartAxisLabel(
+                    value=1, label=ft.Container(ft.Text("Blueberry"), padding=10)
+                ),
+                ft.ChartAxisLabel(
+                    value=2, label=ft.Container(ft.Text("Cherry"), padding=10)
+                ),
+                ft.ChartAxisLabel(
+                    value=3, label=ft.Container(ft.Text("Orange"), padding=10)
+                ),
+            ],
+            labels_size=40,
+        ),
+        horizontal_grid_lines=ft.ChartGridLines(
+            color=ft.colors.BLACK, width=1, dash_pattern=[3, 3]
+        ),
+        vertical_grid_lines=ft.ChartGridLines(
+            color=ft.colors.BLACK, width=1, dash_pattern=[3, 3]
+        ),
+        tooltip_bgcolor=ft.colors.with_opacity(0.5, ft.colors.GREY_300),
+        max_y=100,
+        interactive=True,
+        expand=True,
+    )
+
         CEF= ft.Container(EF,width=200, height=50, margin=ft.margin.only(top=-50, left=180), border=ft.border.all(), alignment=ft.alignment.top_center)
         CS = ft.Container(Settings,width=50, height=50, margin=ft.margin.only(top=50, left=550), border=ft.border.all(), alignment=ft.alignment.top_center)
         CFDU= ft.Container(CF,width=50, height=50, margin=ft.margin.only(top=-50, left=20), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
         CPPSL=ft.Container(PPLS,width=350, height=400, margin=ft.margin.only(top=-300, left=50), border=ft.border.all(), alignment=ft.alignment.top_center)
-        CIP= ft.Container(IP,width=200, height=50, margin=ft.margin.only(top=100, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CIP= ft.Container(IP,width=200, height=50, margin=ft.margin.only(top=20, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
         CPDR= ft.Container(PDR,width=200, height=150, margin=ft.margin.only(top=100, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
-        CCYPDG= ft.Container(CYPDG,width=300, height=50, margin=ft.margin.only(top=50, left=220), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CCYPDG= ft.Container(CYPDG,width=300, height=50, margin=ft.margin.only(top=20, left=220), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CG=ft.Container(chart,width=600, height=400, margin=ft.margin.only(top=20, left=50), border=ft.border.all(), alignment=ft.alignment.top_center)
 
         col= ft.Column(spacing=0, controls=[
         CS,
@@ -297,9 +425,8 @@ async def main(page: ft.Page):
         CPDR,
         CPPSL,
         CCYPDG,
-                
-        #Settings,
-        
+        CG
+                        
         ])
 
         contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE)
@@ -323,18 +450,7 @@ async def main(page: ft.Page):
 
 
 
-    def sesioniniciada(pagSI : ft.Page):
-            page.clean(),
-            page.add()
-            page.title='Fotico'
-            page.window_width = 720
-            page.window_height = 1280
-            page.window_resizable = True
-            page.padding = 0
-        
-
-            page.add(ft.Text("bolasssss"))
-    page.update()   
+ 
 
 
 
