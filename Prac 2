@@ -1,0 +1,50 @@
+class Producto:
+    def __init__(self, nombre, precio, cantidad_disponible):
+        self.nombre = nombre
+        self.precio = precio
+        self.cantidad_disponible = cantidad_disponible
+
+    def mostrar_informacion(self):
+        print(f"Producto: {self.nombre}")
+        print(f"Precio : ${self.precio}")
+        print(f"Cantidad disponible: {self.canitad_disponible}")
+
+class CarritoCompra:
+    def __init__(self):
+        self.productos = []
+
+    def agregar_producto(self, producto, cantidad):
+        self.productos.append((producto, cantidad))
+        print(f"{cantidad} {producto.nombre}(s) agregando(s) al carrito.")
+
+    def mostrar_carrito(self):
+        total = 0
+        print("Carrito de Compra")
+        for producto, cantidad in self.productos:
+            subtotal = producto.precio * cantidad
+            total += subtotal
+            print(f"{producto.nombre}: ${producto.precio} x {cantidad} = ${subtotal}")
+        print(f"Total a pagar: ${total}")
+
+        print("Carrito de Compra:")
+        for producto, cantidad in self.productos:
+            subtotal = producto.precio * cantidad
+            total += subtotal
+            print(f"{producto.nombre}: ${producto.precio} x {cantidad} = ${subtotal}")
+        print(f"Total a pagar: ${total}")
+
+#Crear Productos
+producto1 = Producto("Camiseta", 20, 10)
+producto2 = Producto("Pantalon", 30, 5)
+producto3 = Producto("Zapatos", 50, 3)
+
+#Crear carrito de compra
+carrito = CarritoCompra()
+
+#Agrefar productos al carrito
+carrito.agregar_producto(producto1, 2)
+carrito.agregar_producto(producto2, 1)
+carrito.agregar_producto(producto3, 1)
+
+#Mostrar el contenido del carrito
+carrito.mostrar_carrito()
