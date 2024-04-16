@@ -2,3 +2,65 @@ class Producto:
     def __init__(self, nombre, precio, cantidad_disponible):
         self.nombre = nombre
         self.precio = precio
+
+
+
+class CuentaBancaria:
+    def __init__(self,titular, saldo_inicial=0):
+        self.titular = titular
+        self.saldo = saldo_inicial
+
+    def depositar(self, cantidad):
+        self.saldo += cantidad
+        print(f"Se han depositado {cantidad} unidades. Saldo actual: {self.saldo}")
+
+    def retirar(self, cantidad):
+        if cantidad <= self.saldo:
+            self.saldo -= cantidad
+            print(f"Se han retirado {cantidad} unidades. Saldo actual: {self.saldo}")
+        else:
+            print("Saldo insuficiente.")
+
+class CajeroAutomatico:
+    def __init__(self, cuenta):
+        self.cuenta = cuenta
+
+    def mostrar_menu(self):
+        while True:
+            self.mostrar_menu()
+            opcion = input("Seleccione una opcion: ")
+
+    def mostrar_menu(self):
+        print("\nBienvenido al Cajero Automatico")
+        print("1. Consultar saldo")
+        print("2. Depositar dinero")
+        print("3. Retirar dinero")
+        print("4. Salir")
+
+    def ejecutar(self):
+        while True:
+            self.mostrar_menu()
+            opcion = input("Seleccione una opcion: ")
+
+            if opcion == '1':
+                print(f"Saldo actual {self.cuenta.saldo}")
+            elif opcion == '2':
+                cantidad == float(input("Ingrese la cantidad a depositar"))
+                self.cuenta.depositar(cantidad)
+            elif opcion == '3':
+                cantidad = float(input("Ingrese la cantidad a retirar: "))
+                self.cuenta.retirar(cantidad)
+            elif opcion == '4':
+                print("Gracias por utilizar el cajero Atuomatico. Hasta leuego.")
+                break
+            else:
+                print("Opcion invalida. Por favor, seleccione una opcion válida.")
+
+#Crear una cuenta bancaria
+cuenta_juan = CuentaBancaria("Juan", 1000)
+
+#Inicializar el cajero automatico con la cuenta creada
+cajero_automatico = CajeroAutomatico(cuenta_juan)
+
+#Ejecutar el cajero automatico
+cajero_automatico.ejecutar()
