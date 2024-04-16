@@ -3,12 +3,11 @@ import flet as ft
 #import Registro
 #from Registro import maindos
 async def main(page: ft.Page):
-    page.title = "DERIVAME ESTA"
+    page.title = "APLICACIÓN PARA INTEGRAR Y DERIVAR"
     page.window_width = 720
     page.window_height = 1280
     page.window_resizable = True
     page.padding = 0
-
 
     def Registrarse(pagi : ft.Page):
         #cambio entre clases (páginas)
@@ -127,9 +126,7 @@ async def main(page: ft.Page):
 
        ]) 
 
-
         
-
 
 
 
@@ -140,21 +137,82 @@ async def main(page: ft.Page):
 
         def usuarioregistrado(event):
             if (IDU.value and IDC.value and CDC.value and NT.value):
+                    page.clean(),
+                    page.add()
+                    page.title='Fotico'
+                    page.window_width = 720
+                    page.window_height = 1280
+                    page.window_resizable = True
+                    page.padding = 0
+        
+                    FOTO = ft.Stack([
+      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+      ft.Text(
+          value="NOMBRE DE APP",
+          left=200,
+          top=15,
+          text_align=ft.alignment.center,
+          size=30,
+          style=ft.TextStyle(color=ft.colors.BLACK)
+          )
+      ])
+     
+                    MT = ft.TextButton(
+            
+        text="Sí",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        
+    )
+
+                    TF = ft.FilePicker()
+                    page.overlay.append(TF)
                 
-                    page.clean()
-#                page.add(usuariovalidao)
-                    AAAAAA=ft.TextButton(
+  
+            
+                    FR = ft.Stack([
+#        ft.Container(width=100, height=80,bgcolor=ft.colors.BLUE_300,),
+
+        ft.IconButton(
+                    icon=ft.icons.ADD_A_PHOTO_ROUNDED,
+                    on_click=lambda _: TF.pick_files(
+                        allow_multiple=True
+                    ),
+                ),      
+
+#      ft.Image(src="Mono.jpg")
+    ])
+                    TDCC=ft.TextButton(
                     text="Crear cuenta",
                     style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
                     on_click=usuariovalidao
                     )
-                    AAA= ft.Container(AAAAAA,width=300, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-#                    ft.ElevatedButton("Go to Store", on_click=usuariovalidao))
+
+                    BPCC= ft.Container(TDCC,width=300, height=80, margin=ft.margin.only(top=40, left=150), border=ft.border.all())
+                    EDF= ft.Container(FOTO,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+                    CFR= ft.Container(width=200, height=200, margin=ft.margin.only(top=-185, left=200), border=ft.border.all(),border_radius=200,bgcolor=ft.colors.AMBER_100)
+                    CTF= ft.Container(FR,width=40, height=40, margin=ft.margin.only(top=180, left=350), border=ft.border.all(),border_radius=200)
+            
                     col= ft.Column(spacing=0, controls=[
-                    AAA
+                    EDF,
+                    CTF,
+                    CFR,
+                    BPCC,
                     ])
-                    contr = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
-                    page.add(contr)
+
+                    contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+    
+                    page.add(contenedor)
+     
+        
+    
+
+                
+                    
+                #CPF= ft.Container(PF,width=600, height=80, margin=ft.margin.only(top=20), bgcolor=ft.colors.AMBER_200, border=ft.border.all())
+#                    ft.ElevatedButton("Go to Store", on_click=usuariovalidao))
+                
+                #contr = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+                    page.add(contenedor)
                     page.update()
             else:
                 IDU.error_text='Por favor, ingrese el dato'
@@ -169,32 +227,31 @@ async def main(page: ft.Page):
 
 
 
-
         CC = ft.TextButton(
             
-        text="Crear cuenta",
+        text="Ir a foto",
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
         on_click=usuarioregistrado,
     )
 
         B= ft.Container(B,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
         ESTUPDM= ft.Container(ESTUPDM,width=600, height=80, margin=ft.margin.only(top=0), border=ft.border.all())
-        TPF= ft.Container(TPF,width=600, height=80, margin=ft.margin.only(top=20), bgcolor=ft.colors.AMBER_200, border=ft.border.all())
+        #TPF= ft.Container(TPF,width=600, height=80, margin=ft.margin.only(top=20), bgcolor=ft.colors.AMBER_200, border=ft.border.all())
         CIDU= ft.Container(IDU,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
         CIDC= ft.Container(IDC,width=600, height=80, margin=ft.margin.only(top=60), border=ft.border.all())
         CCDC= ft.Container(CDC,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
         CNT= ft.Container(NT,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
-        CBTCC= ft.Container(CC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        CBTIAF= ft.Container(CC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
         
         col= ft.Column(spacing=0, controls=[
             B,
             ESTUPDM,
-            TPF,
+            #TPF,
             CIDU,
             CIDC,
             CCDC,
             CNT,
-            CBTCC
+            CBTIAF
         ])
 
         contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
@@ -278,14 +335,105 @@ async def main(page: ft.Page):
             style=ft.TextStyle(color=ft.colors.BLACK)
             ),
         ])
+        t=ft.Text()
+        
+        def PI(e):
+            t.value= int(IP.value)
+            DERIV= (t.value + t.value)
+            PDR.value=DERIV
+            print(f"'{DERIV}'")
+            
+            page.update()
+
+
+        def extras(e):
+            page.clean(),
+            page.title = "CONFIGURACIONES"
+            page.add()
+            page.window_width = 720
+            page.window_height = 1280
+            page.window_resizable = True
+            page.padding = 0   
+        #donativos,historial, fórmulas, tus búsquedas, favoritos, ¿buscas algo más?
+            Donativos=ft.TextButton(
+                
+        text="Donativos",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Historial=ft.TextButton(
+                
+        text="Historial",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Fórmulas=ft.TextButton(
+                
+        text="Fórmulas",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Tus_búsquedas=ft.TextButton(
+                
+        text="Tus búsquedas",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Favoritos=ft.TextButton(
+                
+        text="Favoritos",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+        #¿Buscas algo más?
+            BAM=ft.TextButton(
+                
+        text="¿Buscas algo más?",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Regresar=ft.Stack([
+          ft.IconButton(
+            icon=ft.icons.ARROW_CIRCLE_LEFT_OUTLINED,
+            top=0,
+            left=0,
+            scale=2}}}}}}}}}}}}}}}}}}}}}}}}},
+            on_click = usuariovalidao
+            )
+            
+            ])
+            CR= ft.Container(Regresar,width=60, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C1= ft.Container(Donativos,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C2= ft.Container(Historial,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C3= ft.Container(Fórmulas,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C4= ft.Container(Tus_búsquedas,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C5= ft.Container(Favoritos,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C6= ft.Container(BAM,width=600, height=60, margin=ft.margin.only(top=200), border=ft.border.all())
+            CFDU= ft.Container(CF,width=60, height=60, margin=ft.margin.only(top=-50, left=550), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
+            col= ft.Column(spacing=0, controls=[
+        CR,
+        CFDU,
+        C1,
+        C2,
+        C3,
+        C4,
+        C5,
+        C6,
+        ])
+
+            contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+            page.add(contenedor)
+            page.update()
+
         Settings=ft.Stack([
           ft.IconButton(
             icon=ft.icons.SETTINGS_OUTLINED,
             top=0,
             left=0,
-            scale=2
-            #on_click=lambda _: TF.pick_files(
-            )])
+            scale=2,
+            on_click = extras
+            )
+            ])
         TPPLS=ft.Text("Pasos para la solución")
         P1=ft.Text("Paso 1")
         P2=ft.Text("Paso 2")
@@ -298,23 +446,31 @@ async def main(page: ft.Page):
             ft.Container(P2,width=100, height=100, margin=ft.margin.only(top=150, left=200), border=ft.border.all(), alignment=ft.alignment.top_center),
             ft.Container(P4,width=100, height=100, margin=ft.margin.only(top=150, left=0), border=ft.border.all(), alignment=ft.alignment.top_center),
           ])
+
+        
         IP = ft.TextField(
-        hint_text="Ingrese el problema"
+        hint_text="Ingrese el problema",
+        on_change=PI,
+        #value=3
         )
-        PDR= ft.Text(
+        TPDR= ft.Text(
+            left=10,
             value="Presentación de resultado"
         )
+        PDR= ft.Text(
+            top=15,
+            left=10
+        )
+        CPDR=ft.Stack([
+            ft.Container(width=200, height=150,margin=ft.margin.only(top=0, left=10),alignment=ft.alignment.top_center),
+            TPDR,PDR
+        ])
         CYPDG= ft.Stack([
             ft.Text(
             value="Creación y presentación de la gráfica",
             top=5,
             left=30
         )])        
-        
-
-
-
-
 
 
 
@@ -413,7 +569,7 @@ async def main(page: ft.Page):
         CFDU= ft.Container(CF,width=50, height=50, margin=ft.margin.only(top=-50, left=20), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
         CPPSL=ft.Container(PPLS,width=350, height=400, margin=ft.margin.only(top=-300, left=50), border=ft.border.all(), alignment=ft.alignment.top_center)
         CIP= ft.Container(IP,width=200, height=50, margin=ft.margin.only(top=20, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
-        CPDR= ft.Container(PDR,width=200, height=150, margin=ft.margin.only(top=100, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CCPDR= ft.Container(CPDR,width=200, height=150, margin=ft.margin.only(top=100, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
         CCYPDG= ft.Container(CYPDG,width=300, height=50, margin=ft.margin.only(top=20, left=220), border=ft.border.all(), alignment=ft.alignment.top_center)
         CG=ft.Container(chart,width=600, height=400, margin=ft.margin.only(top=20, left=50), border=ft.border.all(), alignment=ft.alignment.top_center)
 
@@ -422,7 +578,7 @@ async def main(page: ft.Page):
         CEF,
         CFDU,
         CIP,
-        CPDR,
+        CCPDR,
         CPPSL,
         CCYPDG,
         CG
@@ -451,7 +607,6 @@ async def main(page: ft.Page):
 
 
  
-
 
 
 
@@ -516,3 +671,4 @@ async def main(page: ft.Page):
     await page.add_async(contenedor)
  
 ft.app(target=main)#,view=ft.WEB_BROWSER)
+
