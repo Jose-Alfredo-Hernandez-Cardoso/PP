@@ -14,11 +14,22 @@
 14.	Asignar acción al botón para el reconocimiento de datos
 15. Escritura de textos e indicaciones en los elementos
 16. Enlazar conexión entre elementos y panel de trabajo
-17. Asignación de acción cuando se presione para ser registrado
-18. Creación de pantalla en formato para registro
-19. Declaración de elementos de interfaz (limitación de tamaños para los objetos)
-20. Integración de objetos en elementos de interfaz
-21. Integración de objetos que permitan el ingreso de datos
-22. Escritura de textos e indicaciones en los elementos
-23. Enlazar conexión entre elementos y panel de trabajo
+17. Integrar conexión del inicio de sesión a el cuerpo principal
+18. Asignación de acción cuando se presione para ser registrado
+19. Creación de pantalla en formato para registro
+20. Declaración de elementos de interfaz (limitación de tamaños para los objetos)
+21. Integración de objetos en elementos de interfaz
+22. Integración de objetos que permitan el ingreso de datos
+23. Escritura de textos e indicaciones en los elementos
+24. Enlazar conexión entre elementos y panel de trabajo
+25. Crear botón para efectuar registro
+26. Asignar acción en botón de registro
+27. Crear bloqueo en caso de que los datos no estén llenos
+28. Establecer conexión del registro hacia el cuerpo principal
+29. Creación de la pantalla "cuerpo principal"
+30. Declaración de elementos de interfaz (limitación de tamaños para los objetos)
+31.	Integración de objetos en elementos de interfaz
+32.	Integración de objetos que permitan el ingreso de datos 
+
+Declaración de elementos de interfaz (limitación de tamaños para los objetos)
 Escribir todo lo de crear el botón pa foto de registro, nueva página pa esa foto, declaración de margenes e íconos y eso
