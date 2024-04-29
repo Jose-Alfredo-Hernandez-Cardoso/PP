@@ -33,5 +33,6 @@ PI= Problema ingresado
 TPPLS= Texto pasos para la solución
 PPLS= Pasos para la solución
 IP= Ingresar Problema
-PDR= Presentación de resultado
+PDRD= Presentación de resultado derivada
+PDRI= Presentación de resultado integral
 CYPDG= Creación y presentación de la gráfica
