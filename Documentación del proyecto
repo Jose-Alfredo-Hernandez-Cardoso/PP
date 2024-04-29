@@ -29,7 +29,20 @@
 29. Creación de la pantalla "cuerpo principal"
 30. Declaración de elementos de interfaz (limitación de tamaños para los objetos)
 31.	Integración de objetos en elementos de interfaz
-32.	Integración de objetos que permitan el ingreso de datos 
+32.	Integración de objetos que permitan el ingreso de datos
+33. Agregación de librerias para derivar e integrar
+34. Enlazar datos ingresados a la derivación e integración
+35. Codificación de automatización para cambio de resultado conforme cambio en ingreso de datos
+36. 
+
+Creación de pantalla "extras"
+Declaración de elementos de interfaz (limitación de tamaños para los objetos)
+Integración de objetos en elementos de interfaz
+Creación de pantalla "Donativos"
+Declaración de elementos de interfaz (limitación de tamaños para los objetos)
+Integración de objetos en elementos de interfaz
+
+Asignación de acción en botones
 
 Declaración de elementos de interfaz (limitación de tamaños para los objetos)
 Escribir todo lo de crear el botón pa foto de registro, nueva página pa esa foto, declaración de margenes e íconos y eso
