@@ -1,1 +1,672 @@
+#Centro de trabajo con cambios
+import flet as ft
+import sympy as sp 
+async def main(page: ft.Page):
+    page.title = "APLICACIÓN PARA INTEGRAR Y DERIVAR"
+    page.window_width = 720
+    page.window_height = 1280
+    page.window_resizable = True
+    page.padding = 0
 
+
+    def Registrarse(pagi : ft.Page):
+        #cambio entre clases (páginas)
+        TSDU.value="Llenado"
+        TSDC.value="Llenado"
+        page.clean(),
+        page.title = "REGISTRO"
+        page.add()
+        page.window_width = 720
+        page.window_height = 1280
+        page.window_resizable = True
+        page.padding = 0   
+        
+        B = ft.Stack([
+        ft.Container(width=600, height=140, top=0, left=0, bgcolor=ft.colors.WHITE),
+        ft.Text(
+            value="ESTAMOS ORGULLOSOS DE QUE FORMES \n     PARTE DE NUESTRA COMUNIDAD",
+            left=100,
+            top=0,
+            text_align=ft.MainAxisAlignment.CENTER,
+            #ft.alignment.top_center,
+            size=22,
+            style=ft.TextStyle(color=ft.colors.BLACK)
+            )
+        ])
+        
+        ESTUPDM = ft.Stack([
+        ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+        ft.Text(
+            value="Esto solo tomará un par de minutos",
+            left=170,
+            top=15,
+            text_align=ft.alignment.center,
+            size=15,
+            style=ft.TextStyle(color=ft.colors.BLACK)
+            )
+        ])
+
+        def metefoto(pagRr : ft.Page):
+            page.clean(),
+            page.add()
+            page.title='Fotico'
+            page.window_width = 720
+            page.window_height = 1280
+            page.window_resizable = True
+            page.padding = 0
+        
+            FOTO = ft.Text(
+            value="aaaaa",
+        )
+     
+            MT = ft.TextButton(
+            
+        text="Sí",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        
+    )
+
+            TF = ft.FilePicker()
+            page.overlay.append(TF)
+                
+  
+            
+            FR = ft.Stack([
+#        ft.Container(width=100, height=80,bgcolor=ft.colors.BLUE_300,),
+
+        ft.IconButton(
+                    icon=ft.icons.ADD_A_PHOTO_ROUNDED,
+                    on_click=lambda _: TF.pick_files(
+                        allow_multiple=True
+                    ),
+                ),      
+
+#      ft.Image(src="Mono.jpg")
+    ])
+            EDF= ft.Container(FOTO,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+            CFR= ft.Container(width=200, height=200, margin=ft.margin.only(top=-185, left=200), border=ft.border.all(),border_radius=200,bgcolor=ft.colors.AMBER_100)
+            CTF= ft.Container(FR,width=40, height=40, margin=ft.margin.only(top=180, left=350), border=ft.border.all(),border_radius=200)
+            
+            col= ft.Column(spacing=0, controls=[
+                EDF,
+                
+                CTF,
+                CFR,
+                
+        ])
+
+            contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+    
+            page.add(contenedor)
+     
+        
+        page.update()
+
+        TPF = ft.Stack([
+          ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+          ft.TextButton(
+          content=ft.Column([
+            ft.Text(value="  foto de perfil?", size=20),
+            ],
+            alignment=ft.MainAxisAlignment.CENTER,
+                  ),
+          left=320,
+          top=13,
+          style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
+          on_click=metefoto
+        ),
+          ft.Text(
+            value="¿Deseas ingresar una",
+            left=145,
+            top=15,
+            text_align=ft.MainAxisAlignment.CENTER,
+            size=20,
+           style=ft.TextStyle(color=ft.colors.BLACK)
+           ),
+
+       ]) 
+
+
+        
+
+
+
+
+
+
+
+
+
+        def usuarioregistrado(event):
+            if (IDU.value and IDC.value and CDC.value and NT.value):
+                
+                    page.clean()
+#                page.add(usuariovalidao)
+                    AAAAAA=ft.TextButton(
+                    text="Crear cuenta",
+                    style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+                    on_click=usuariovalidao
+                    )
+                    AAA= ft.Container(AAAAAA,width=300, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+#                    ft.ElevatedButton("Go to Store", on_click=usuariovalidao))
+                    col= ft.Column(spacing=0, controls=[
+                    AAA
+                    ])
+                    contr = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+                    page.add(contr)
+                    page.update()
+            else:
+                IDU.error_text='Por favor, ingrese el dato'
+                IDC.error_text='Por favor, ingrese el dato'
+                CDC.error_text='Por favor, ingrese el dato'
+                NT.error_text='Por favor, ingrese el dato'
+                page.update()
+                
+
+
+
+
+
+
+
+        CC = ft.TextButton(
+            
+        text="Crear cuenta",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        on_click=usuarioregistrado,
+    )
+
+        B= ft.Container(B,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        ESTUPDM= ft.Container(ESTUPDM,width=600, height=80, margin=ft.margin.only(top=0), border=ft.border.all())
+        TPF= ft.Container(TPF,width=600, height=80, margin=ft.margin.only(top=20), bgcolor=ft.colors.AMBER_200, border=ft.border.all())
+        CIDU= ft.Container(IDU,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        CIDC= ft.Container(IDC,width=600, height=80, margin=ft.margin.only(top=60), border=ft.border.all())
+        CCDC= ft.Container(CDC,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
+        CNT= ft.Container(NT,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
+        CBTCC= ft.Container(CC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        
+        col= ft.Column(spacing=0, controls=[
+            B,
+            ESTUPDM,
+            TPF,
+            CIDU,
+            CIDC,
+            CCDC,
+            CNT,
+            CBTCC
+        ])
+
+        contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+    
+        
+        page.add(contenedor)
+        #pagi.add()
+    page.update()
+    
+    IDU = ft.TextField(
+        hint_text="Ingrese el nombre de usuario a utilizar",
+        
+        )
+        
+    IDC = ft.TextField(
+        hint_text="Ingrese el correo electrónico"
+        )
+
+    CDC = ft.TextField(
+        hint_text="Asigna una contraseña", password=True, can_reveal_password=True
+        
+        )
+        
+    NT = ft.TextField(
+        hint_text="Ingrese su número telefónico",
+        )
+
+    TNA = ft.Stack([
+      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+      ft.Text(
+          value="NOMBRE DE APP",
+          left=200,
+          top=15,
+          text_align=ft.alignment.center,
+          size=30,
+          style=ft.TextStyle(color=ft.colors.BLACK)
+          )
+      ])
+
+    CF = ft.Stack([
+      #ft.Container(width=720, height=1280, bgcolor=ft.colors.BLUE_300),
+      ft.Image(src="Mono.jpg")
+    ])
+
+    TSDU = ft.TextField(
+    hint_text="Usuario",
+    
+    )
+    
+    TSDC = ft.TextField( 
+    hint_text="Contraseña", password=True, can_reveal_password=True
+    )
+###################
+
+    def usuariovalidao(event):
+        IDU.value="Llenado"
+        IDC.value="Llenado"
+        CDC.value="Llenado"
+        NT.value="Llenado"
+        if (not TSDU.value or not TSDC.value or not IDU.value or not IDC.value or not CDC.value or not NT.value):
+            TSDU.error_text='Por favor, ingrese el dato'
+            TSDC.error_text='Por favor, ingrese el dato'
+            page.update()
+        else:
+          page.clean(),
+          page.add()
+          page.title='DERIVAR || INTEGRAR'
+          page.window_width = 720
+          page.window_height = 1280
+          page.window_resizable = True
+          page.padding = 0
+
+        EF = ft.Stack([
+        #ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE, border=ft.border.all(),alignment=ft.alignment.top_center),
+        ft.Text(
+            value="Encontrar fórmula",
+            left=10,
+            top=15,
+#            text_align=ft.alignment.center,
+            size=15,
+            style=ft.TextStyle(color=ft.colors.BLACK)
+            ),
+        ])
+        t=ft.Text()
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        def PI(e):
+            t.value= (IP.value)
+            DERIV= sp.diff(t.value)#(t.value + t.value)
+            INTEG= sp.integrate(t.value)
+            PDRD.value= DERIV  
+            PDRI.value= INTEG
+                        
+            page.update()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        def extras(e):
+            page.clean(),
+            page.title = "CONFIGURACIONES"
+            page.add()
+            page.window_width = 720
+            page.window_height = 1280
+            page.window_resizable = True
+            page.padding = 0   
+        #donativos,historial, fórmulas, tus búsquedas, favoritos, ¿buscas algo más?
+            Donativos=ft.TextButton(
+                
+        text="Donativos",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Historial=ft.TextButton(
+                
+        text="Historial",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Fórmulas=ft.TextButton(
+                
+        text="Fórmulas",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Tus_búsquedas=ft.TextButton(
+                
+        text="Tus búsquedas",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Favoritos=ft.TextButton(
+                
+        text="Favoritos",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+        #¿Buscas algo más?
+            BAM=ft.TextButton(
+                
+        text="¿Buscas algo más?",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuariovalidao,
+        )
+            Regresar=ft.Stack([
+          ft.IconButton(
+            icon=ft.icons.ARROW_CIRCLE_LEFT_OUTLINED,
+            top=0,
+            left=0,
+            scale=2,
+            on_click = usuariovalidao
+            )
+            
+            ])
+            CR= ft.Container(Regresar,width=60, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C1= ft.Container(Donativos,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C2= ft.Container(Historial,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C3= ft.Container(Fórmulas,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C4= ft.Container(Tus_búsquedas,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C5= ft.Container(Favoritos,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            C6= ft.Container(BAM,width=600, height=60, margin=ft.margin.only(top=200), border=ft.border.all())
+            CFDU= ft.Container(CF,width=60, height=60, margin=ft.margin.only(top=-50, left=550), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
+            col= ft.Column(spacing=0, controls=[
+        CR,
+        CFDU,
+        C1,
+        C2,
+        C3,
+        C4,
+        C5,
+        C6,
+        ])
+
+            contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+            page.add(contenedor)
+            page.update()
+
+        Settings=ft.Stack([
+          ft.IconButton(
+            icon=ft.icons.SETTINGS_OUTLINED,
+            top=0,
+            left=0,
+            scale=2,
+            on_click = extras
+            )
+            ])
+        TPPLS=ft.Text("Pasos para la solución")
+        P1=ft.Text("Paso 1")
+        P2=ft.Text("Paso 2")
+        P3=ft.Text("Paso 3")
+        P4=ft.Text("Paso 4")
+        PPLS=ft.Stack([
+            ft.Container(TPPLS,width=200, height=30, margin=ft.margin.only(top=10, left=50), border=ft.border.all(), alignment=ft.alignment.top_center),
+            ft.Container(P1,width=100, height=100, margin=ft.margin.only(top=50, left=100), border=ft.border.all(), alignment=ft.alignment.top_center),
+            ft.Container(P3,width=100, height=100, margin=ft.margin.only(top=250, left=100), border=ft.border.all(), alignment=ft.alignment.top_center),
+            ft.Container(P2,width=100, height=100, margin=ft.margin.only(top=150, left=200), border=ft.border.all(), alignment=ft.alignment.top_center),
+            ft.Container(P4,width=100, height=100, margin=ft.margin.only(top=150, left=0), border=ft.border.all(), alignment=ft.alignment.top_center),
+          ])
+
+        
+        IP = ft.TextField(
+        hint_text="Ingrese el problema",
+        on_change=PI,
+        #value=3
+        )
+        TPDRD= ft.Text(
+            left=10,
+            value="Presentación de derivada"
+        )
+        TPDRI= ft.Text(
+            left=10,
+            value="Presentación de integral"
+        )
+        PDRD= ft.Text(
+            top=30,
+            left=10
+        )
+        PDRI= ft.Text(
+            top=30,
+            left=10
+        )
+        CPDRD=ft.Stack([
+            ft.Container(width=200, height=150,margin=ft.margin.only(top=0, left=10),alignment=ft.alignment.top_center),
+            TPDRD,PDRD
+        ])
+        CPDRI=ft.Stack([
+            ft.Container(width=200, height=150,margin=ft.margin.only(top=0, left=10),alignment=ft.alignment.top_center),
+            TPDRI,PDRI
+        ])
+
+        CYPDG= ft.Stack([
+            ft.Text(
+            value="Creación y presentación de la gráfica",
+            top=5,
+            left=30
+        )])        
+
+
+
+
+
+
+        chart = ft.BarChart(
+        bar_groups=[
+            ft.BarChartGroup(
+                x=0,
+                bar_rods=[
+                    ft.BarChartRod(
+                        from_y=0,
+                        to_y=40,
+                        width=40,
+                        color=ft.colors.BLACK,
+                        tooltip="Apple",
+                        border_radius=0,
+                    ),
+                ],
+            ),
+            ft.BarChartGroup(
+                x=1,
+                bar_rods=[
+                    ft.BarChartRod(
+                        from_y=0,
+                        to_y=90,
+                        width=40,
+                        color=ft.colors.BLUE,
+                        tooltip="Blueberry",
+                        border_radius=0,
+                    ),
+                ],
+            ),
+            ft.BarChartGroup(
+                x=2,
+                bar_rods=[
+                    ft.BarChartRod(
+                        from_y=0,
+                        to_y=30,
+                        width=40,
+                        color=ft.colors.RED,
+                        tooltip="Cherry",
+                        border_radius=0,
+                    ),
+                ],
+            ),
+            ft.BarChartGroup(
+                x=3,
+                bar_rods=[
+                    ft.BarChartRod(
+                        from_y=0,
+                        to_y=60,
+                        width=40,
+                        color=ft.colors.ORANGE,
+                        tooltip="Orange",
+                        border_radius=0,
+                    ),
+                ],
+            ),
+        ],
+        border=ft.border.all(1, ft.colors.GREY_400),
+        left_axis=ft.ChartAxis(
+            labels_size=40, title=ft.Text("Fruit supply"), title_size=40
+        ),
+        bottom_axis=ft.ChartAxis(
+            labels=[
+                ft.ChartAxisLabel(
+                    value=0, label=ft.Container(ft.Text("Apple"), padding=10)
+                ),
+                ft.ChartAxisLabel(
+                    value=1, label=ft.Container(ft.Text("Blueberry"), padding=10)
+                ),
+                ft.ChartAxisLabel(
+                    value=2, label=ft.Container(ft.Text("Cherry"), padding=10)
+                ),
+                ft.ChartAxisLabel(
+                    value=3, label=ft.Container(ft.Text("Orange"), padding=10)
+                ),
+            ],
+            labels_size=40,
+        ),
+        horizontal_grid_lines=ft.ChartGridLines(
+            color=ft.colors.BLACK, width=1, dash_pattern=[3, 3]
+        ),
+        vertical_grid_lines=ft.ChartGridLines(
+            color=ft.colors.BLACK, width=1, dash_pattern=[3, 3]
+        ),
+        tooltip_bgcolor=ft.colors.with_opacity(0.5, ft.colors.GREY_300),
+        max_y=100,
+        interactive=True,
+        expand=True,
+    )
+        
+
+
+        Nota=ft.Text("Nota: ** significa potencia")
+
+        CEF= ft.Container(EF,width=200, height=50, margin=ft.margin.only(top=-50, left=180), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CS = ft.Container(Settings,width=50, height=50, margin=ft.margin.only(top=30, left=550), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CFDU= ft.Container(CF,width=50, height=50, margin=ft.margin.only(top=-50, left=20), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
+        CPPSL=ft.Container(PPLS,width=350, height=350, margin=ft.margin.only(top=-380, left=50), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CNota= ft.Container(Nota,width=200, height=50, margin=ft.margin.only(top=20, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CIP= ft.Container(IP,width=200, height=50, margin=ft.margin.only(top=20, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CCPDRD= ft.Container(CPDRD,width=200, height=100, margin=ft.margin.only(top=30, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CCPDRI= ft.Container(CPDRI,width=200, height=100, margin=ft.margin.only(top=30, left=450), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CCYPDG= ft.Container(CYPDG,width=300, height=50, margin=ft.margin.only(top=20, left=220), border=ft.border.all(), alignment=ft.alignment.top_center)
+
+##########
+
+        CG=ft.Container(chart,width=600, height=400, margin=ft.margin.only(top=20, left=50), border=ft.border.all(), alignment=ft.alignment.top_center)
+
+        col= ft.Column(spacing=0, controls=[
+        CS,
+        CEF,
+        CFDU,
+        CIP,
+        CNota,
+        CCPDRD,
+        CCPDRI,
+        CPPSL,
+        CCYPDG,
+        CG
+                        
+        ])
+
+        contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE)
+    #,alignment=ft.alignment.top_center
+        
+        page.add(contenedor)
+
+          #page.add(sesioniniciada)
+        page.update()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    TDR = ft.Stack([
+      ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+      ft.TextButton(
+      content=ft.Column([
+        ft.Text(value="Registrarse", size=20),
+        ],
+        alignment=ft.MainAxisAlignment.CENTER,
+                ),
+      left=320,
+      top=12,
+      style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
+      on_click=Registrarse
+    ),
+      ft.Text(
+          value="¿No tienes cuenta?",
+          left=145,
+          top=15,
+          text_align=ft.MainAxisAlignment.CENTER,
+          size=20,
+          style=ft.TextStyle(color=ft.colors.BLACK)
+          ),
+
+      ]) 
+
+    BDIS = ft.TextButton(
+        
+      text="Iniciar sesión",
+      style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+     on_click=usuariovalidao,
+     )
+    
+    NA= ft.Container(TNA,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    Foto= ft.Container(CF,width=200, height=200, margin=ft.margin.only(top=60, left=200), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
+    Usuario= ft.Container(TSDU,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
+    Contraseña= ft.Container(TSDC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
+    TPCC= ft.Container(TDR,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+    IS= ft.Container(BDIS,width=300, height=80, margin=ft.margin.only(top=40, left=150), border=ft.border.all())
+
+    col= ft.Column(spacing=0, controls=[
+        NA,
+        Foto,
+        Usuario,
+        Contraseña,
+        TPCC,
+        IS,
+    ])
+
+    contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+    await page.add_async(contenedor)
+ 
+ft.app(target=main)#,view=ft.WEB_BROWSER)
