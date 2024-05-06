@@ -1,6 +1,7 @@
 #Centro de trabajo con cambios
 import flet as ft
 import sympy as sp 
+import mysql.connector
 async def main(page: ft.Page):
     page.title = "APLICACIÓN PARA INTEGRAR Y DERIVAR"
     page.window_width = 720
@@ -9,199 +10,7 @@ async def main(page: ft.Page):
     page.padding = 0
 
 
-    def Registrarse(pagi : ft.Page):
-        #cambio entre clases (páginas)
-        TSDU.value="Llenado"
-        TSDC.value="Llenado"
-        page.clean(),
-        page.title = "REGISTRO"
-        page.add()
-        page.window_width = 720
-        page.window_height = 1280
-        page.window_resizable = True
-        page.padding = 0   
-        
-        B = ft.Stack([
-        ft.Container(width=600, height=140, top=0, left=0, bgcolor=ft.colors.WHITE),
-        ft.Text(
-            value="ESTAMOS ORGULLOSOS DE QUE FORMES \n     PARTE DE NUESTRA COMUNIDAD",
-            left=100,
-            top=0,
-            text_align=ft.MainAxisAlignment.CENTER,
-            #ft.alignment.top_center,
-            size=22,
-            style=ft.TextStyle(color=ft.colors.BLACK)
-            )
-        ])
-        
-        ESTUPDM = ft.Stack([
-        ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
-        ft.Text(
-            value="Esto solo tomará un par de minutos",
-            left=170,
-            top=15,
-            text_align=ft.alignment.center,
-            size=15,
-            style=ft.TextStyle(color=ft.colors.BLACK)
-            )
-        ])
 
-        def metefoto(pagRr : ft.Page):
-            page.clean(),
-            page.add()
-            page.title='Fotico'
-            page.window_width = 720
-            page.window_height = 1280
-            page.window_resizable = True
-            page.padding = 0
-        
-            FOTO = ft.Text(
-            value="aaaaa",
-        )
-     
-            MT = ft.TextButton(
-            
-        text="Sí",
-        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
-        
-    )
-
-            TF = ft.FilePicker()
-            page.overlay.append(TF)
-                
-  
-            
-            FR = ft.Stack([
-#        ft.Container(width=100, height=80,bgcolor=ft.colors.BLUE_300,),
-
-        ft.IconButton(
-                    icon=ft.icons.ADD_A_PHOTO_ROUNDED,
-                    on_click=lambda _: TF.pick_files(
-                        allow_multiple=True
-                    ),
-                ),      
-
-#      ft.Image(src="Mono.jpg")
-    ])
-            EDF= ft.Container(FOTO,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-            CFR= ft.Container(width=200, height=200, margin=ft.margin.only(top=-185, left=200), border=ft.border.all(),border_radius=200,bgcolor=ft.colors.AMBER_100)
-            CTF= ft.Container(FR,width=40, height=40, margin=ft.margin.only(top=180, left=350), border=ft.border.all(),border_radius=200)
-            
-            col= ft.Column(spacing=0, controls=[
-                EDF,
-                
-                CTF,
-                CFR,
-                
-        ])
-
-            contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
-    
-            page.add(contenedor)
-     
-        
-        page.update()
-
-        TPF = ft.Stack([
-          ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
-          ft.TextButton(
-          content=ft.Column([
-            ft.Text(value="  foto de perfil?", size=20),
-            ],
-            alignment=ft.MainAxisAlignment.CENTER,
-                  ),
-          left=320,
-          top=13,
-          style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
-          on_click=metefoto
-        ),
-          ft.Text(
-            value="¿Deseas ingresar una",
-            left=145,
-            top=15,
-            text_align=ft.MainAxisAlignment.CENTER,
-            size=20,
-           style=ft.TextStyle(color=ft.colors.BLACK)
-           ),
-
-       ]) 
-
-
-        
-
-
-
-
-
-
-
-
-
-        def usuarioregistrado(event):
-            if (IDU.value and IDC.value and CDC.value and NT.value):
-                
-                    page.clean()
-#                page.add(usuariovalidao)
-                    AAAAAA=ft.TextButton(
-                    text="Crear cuenta",
-                    style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
-                    on_click=usuariovalidao
-                    )
-                    AAA= ft.Container(AAAAAA,width=300, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-#                    ft.ElevatedButton("Go to Store", on_click=usuariovalidao))
-                    col= ft.Column(spacing=0, controls=[
-                    AAA
-                    ])
-                    contr = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
-                    page.add(contr)
-                    page.update()
-            else:
-                IDU.error_text='Por favor, ingrese el dato'
-                IDC.error_text='Por favor, ingrese el dato'
-                CDC.error_text='Por favor, ingrese el dato'
-                NT.error_text='Por favor, ingrese el dato'
-                page.update()
-                
-
-
-
-
-
-
-
-        CC = ft.TextButton(
-            
-        text="Crear cuenta",
-        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
-        on_click=usuarioregistrado,
-    )
-
-        B= ft.Container(B,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-        ESTUPDM= ft.Container(ESTUPDM,width=600, height=80, margin=ft.margin.only(top=0), border=ft.border.all())
-        TPF= ft.Container(TPF,width=600, height=80, margin=ft.margin.only(top=20), bgcolor=ft.colors.AMBER_200, border=ft.border.all())
-        CIDU= ft.Container(IDU,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-        CIDC= ft.Container(IDC,width=600, height=80, margin=ft.margin.only(top=60), border=ft.border.all())
-        CCDC= ft.Container(CDC,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
-        CNT= ft.Container(NT,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
-        CBTCC= ft.Container(CC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-        
-        col= ft.Column(spacing=0, controls=[
-            B,
-            ESTUPDM,
-            TPF,
-            CIDU,
-            CIDC,
-            CCDC,
-            CNT,
-            CBTCC
-        ])
-
-        contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
-    
-        
-        page.add(contenedor)
-        #pagi.add()
-    page.update()
     
     IDU = ft.TextField(
         hint_text="Ingrese el nombre de usuario a utilizar",
@@ -224,8 +33,8 @@ async def main(page: ft.Page):
     TNA = ft.Stack([
       ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
       ft.Text(
-          value="NOMBRE DE APP",
-          left=200,
+          value="DERINTER",
+          left=230,
           top=15,
           text_align=ft.alignment.center,
           size=30,
@@ -253,11 +62,22 @@ async def main(page: ft.Page):
         IDC.value="Llenado"
         CDC.value="Llenado"
         NT.value="Llenado"
+        a=mysql.connector.connect(user="root", password="", host="localhost", database="derinter", port="3306")
+        print(a)
+        busqueda_de_usuario= a.cursor()
+    #busqueda_de_usuario.execute("SELECT * FROM usuario")
+    ##def usuariometido(e):
+        sql = ("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
+        busqueda_de_usuario.execute("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
+        #for dato in busqueda_de_usuario:
+        #   print(dato)
         if (not TSDU.value or not TSDC.value or not IDU.value or not IDC.value or not CDC.value or not NT.value):
             TSDU.error_text='Por favor, ingrese el dato'
             TSDC.error_text='Por favor, ingrese el dato'
             page.update()
-        else:
+            ##Error presentado, valida mal la información, el problema debe estar en el if
+        if(busqueda_de_usuario.fetchall()):
+          #print("sí salió pa")
           page.clean(),
           page.add()
           page.title='DERIVAR || INTEGRAR'
@@ -630,7 +450,7 @@ async def main(page: ft.Page):
       left=320,
       top=12,
       style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
-      on_click=Registrarse
+      #on_click=Registrarse
     ),
       ft.Text(
           value="¿No tienes cuenta?",
