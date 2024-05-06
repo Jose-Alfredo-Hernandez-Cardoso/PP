@@ -33,7 +33,9 @@
 33. Agregación de librerias para derivar e integrar
 34. Enlazar datos ingresados a la derivación e integración
 35. Codificación de automatización para cambio de resultado conforme cambio en ingreso de datos
-36. 
+36. Conexión a base de datos ya existente
+37. Validación de datos en usuario y contraseña (si ambos existen en la base de datos el acceso es permitido)
+
 
 Creación de pantalla "extras"
 Declaración de elementos de interfaz (limitación de tamaños para los objetos)
