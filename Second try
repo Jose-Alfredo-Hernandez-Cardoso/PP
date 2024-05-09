@@ -56,7 +56,7 @@ async def main(page: ft.Page):
         TDCC=ft.TextButton(
                     text="Crear cuenta",
                     style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
-                    on_click=insertadatos
+                    on_click=usuariovalidao
                     )
         
 
@@ -117,15 +117,7 @@ async def main(page: ft.Page):
 
 
 
-    IDU = ft.TextField(
-        hint_text="Ingrese su número de control",
-        
-        )  
-    
-    CDC = ft.TextField(
-        hint_text="INGRESE SU CURP", password=True, can_reveal_password=True
-        
-        )
+
     
     TNA = ft.Stack([
       ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
@@ -147,8 +139,17 @@ async def main(page: ft.Page):
     def solonúmeros(e):       
         if TSDU.value.isalpha():
             TSDU.value=("")
-            page.update()
+        page.update()
 
+    IDU = ft.TextField(
+        hint_text="Ingrese su número de control",
+        on_change=solonúmeros
+        )  
+    
+    CDC = ft.TextField(
+        hint_text="INGRESE SU CURP", password=True, can_reveal_password=True,
+        on_change=solonúmeros
+        )
     TSDU = ft.TextField(
     hint_text="Usuario",
     label="Introduzca el usuario",
@@ -161,16 +162,7 @@ async def main(page: ft.Page):
     label="Introduzca la contraseña"
     )
     
-    def insertadatos(event):
-        b=mysql.connector.connect(user="root", password="", host="localhost", database="derinter_registro", port="3306")
-        #print(b)
-        insert= b.cursor()
-        #busqueda_de_usuario_registro.execute("SELECT * FROM derinter_registro WHERE No_Control='"+IDU.value+"' and CURP='"+CDC.value+"'")
-        sql="""INSERT INTO derinter_reg (no_control, curp) VALUES  ('{0}','{1}')""".format(IDU.value,CDC.value)
-        insert.execute(sql)
-        b.commit()
-        for dato in insert:
-           print(dato)
+
 ###################
 
     def usuariovalidao(event):
@@ -198,17 +190,33 @@ async def main(page: ft.Page):
         #sql = ("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
         busqueda_de_usuario.execute("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
         
-        if (not TSDU.value or not TSDC.value or not IDU.value):# or not IDC.value or not CDC.value or not NT.value):
+
+        
+        if (not TSDU.value or not TSDC.value):# or not IDU.value or not IDC.value or not CDC.value or not NT.value):
             TSDU.error_text='Por favor, ingrese el dato'
             TSDC.error_text='Por favor, ingrese el dato'
             page.update()
             ##Error presentado, valida mal la información, el problema debe estar en el if
-
-
-
         
+        #Encuentra usuario en la BD derinter_registro
+        EC=mysql.connector.connect(user="root", password="", host="localhost", database="derinter", port="3306")
+        print(EC)
+        Encuentra= EC.cursor()
+
+        Encuentra.execute("SELECT * FROM derinter_reg WHERE no_control='"+IDU.value+"' and curp='"+CDC.value+"'")
+        if(Encuentra.fetchall):
+            page.update()
+        else:
+            bw=mysql.connector.connect(user="root", password="", host="localhost", database="derinter_registro", port="3306")
+        #print(b)
+            insert= bw.cursor()
+        #busqueda_de_usuario_registro.execute("SELECT * FROM derinter_registro WHERE No_Control='"+IDU.value+"' and CURP='"+CDC.value+"'")
+            sql="""INSERT INTO derinter_reg (no_control, curp) VALUES  ('{0}','{1}')""".format(IDU.value,CDC.value)
+            insert.execute(sql)
+            bw.commit()
+            page.update()
         #b.close()
-        if(busqueda_de_usuario.fetchall()):
+        if(busqueda_de_usuario.fetchall() or IDU.value and CDC.value):
           a.close()
           #print("sí salió pa")
           page.clean(),
