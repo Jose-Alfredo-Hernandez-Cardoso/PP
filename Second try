@@ -13,11 +13,11 @@ async def main(page: ft.Page):
 
     def Registrarse(pagi : ft.Page):
         #cambio entre clases (páginas)
-        TSDU.value="Llenado"
-        TSDC.value="Llenado"
-        IDU.value=""
+        #TSDU.value="Llenado"
+        #TSDC.value="Llenado"
+        #IDU.value=""
         #IDC.value=""
-        CDC.value=""
+        #CDC.value=""
         #NT.value=""
         page.clean(),
         page.title = "REGISTRO"
@@ -56,7 +56,7 @@ async def main(page: ft.Page):
         TDCC=ft.TextButton(
                     text="Crear cuenta",
                     style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
-                    on_click=usuariovalidao
+                    on_click=insertadatos
                     )
         
 
@@ -161,28 +161,55 @@ async def main(page: ft.Page):
     label="Introduzca la contraseña"
     )
     
+    def insertadatos(event):
+        b=mysql.connector.connect(user="root", password="", host="localhost", database="derinter_registro", port="3306")
+        #print(b)
+        insert= b.cursor()
+        #busqueda_de_usuario_registro.execute("SELECT * FROM derinter_registro WHERE No_Control='"+IDU.value+"' and CURP='"+CDC.value+"'")
+        sql="""INSERT INTO derinter_reg (no_control, curp) VALUES  ('{0}','{1}')""".format(IDU.value,CDC.value)
+        insert.execute(sql)
+        b.commit()
+        for dato in insert:
+           print(dato)
 ###################
 
     def usuariovalidao(event):
-        IDU.value="Llenado"
+
+        #IDU.value="Llenado"
         #IDC.value="Llenado"
-        CDC.value="Llenado"
+        #CDC.value="Llenado"
         #NT.value="Llenado"
+        #TSDC.value="ADMIN"
+        #TSDU.value="1"
         a=mysql.connector.connect(user="root", password="", host="localhost", database="derinter", port="3306")
         print(a)
         busqueda_de_usuario= a.cursor()
     #busqueda_de_usuario.execute("SELECT * FROM usuario")
     ##def usuariometido(e):
-        sql = ("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
-        busqueda_de_usuario.execute("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
+        #sql = ("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
+        #busqueda_de_usuario.execute("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
+        #a.close()
+        #busqueda_de_usuario.execute("SELECT * FROM usuario WHERE Usuario='"+IDU.value+"' and Contraseña='"+CDC.value+"'")
         #for dato in busqueda_de_usuario:
         #   print(dato)
+
+    #busqueda_de_usuario.execute("SELECT * FROM usuario")
+    ##def usuariometido(e):
+        #sql = ("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
+        busqueda_de_usuario.execute("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
+        
         if (not TSDU.value or not TSDC.value or not IDU.value):# or not IDC.value or not CDC.value or not NT.value):
             TSDU.error_text='Por favor, ingrese el dato'
             TSDC.error_text='Por favor, ingrese el dato'
             page.update()
             ##Error presentado, valida mal la información, el problema debe estar en el if
+
+
+
+        
+        #b.close()
         if(busqueda_de_usuario.fetchall()):
+          a.close()
           #print("sí salió pa")
           page.clean(),
           page.add()
