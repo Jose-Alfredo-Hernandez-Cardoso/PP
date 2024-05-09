@@ -11,25 +11,122 @@ async def main(page: ft.Page):
 
 
 
+    def Registrarse(pagi : ft.Page):
+        #cambio entre clases (páginas)
+        TSDU.value="Llenado"
+        TSDC.value="Llenado"
+        IDU.value=""
+        #IDC.value=""
+        CDC.value=""
+        #NT.value=""
+        page.clean(),
+        page.title = "REGISTRO"
+        page.add()
+        page.window_width = 720
+        page.window_height = 1280
+        page.window_resizable = True
+        page.padding = 0   
+        
+
+        B = ft.Stack([
+        ft.Container(width=600, height=140, top=0, left=0, bgcolor=ft.colors.WHITE),
+        ft.Text(
+            value="ESTAMOS ORGULLOSOS DE QUE FORMES \n     PARTE DE NUESTRA COMUNIDAD",
+            left=100,
+            top=0,
+            text_align=ft.MainAxisAlignment.CENTER,
+            #ft.alignment.top_center,
+            size=22,
+            style=ft.TextStyle(color=ft.colors.BLACK)
+            )
+        ])
+        
+        ESTUPDM = ft.Stack([
+        ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+        ft.Text(
+            value="Esto solo tomará un par de minutos",
+            left=170,
+            top=15,
+            text_align=ft.alignment.center,
+            size=15,
+            style=ft.TextStyle(color=ft.colors.BLACK)
+            )
+        ])
+
+        TDCC=ft.TextButton(
+                    text="Crear cuenta",
+                    style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+                    on_click=usuariovalidao
+                    )
+        
+
+
+
+
+
+
+        CC = ft.TextButton(
+            
+        text="Crear",
+        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #on_click=usuarioregistrado,
+    )
+
+        B= ft.Container(B,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        ESTUPDM= ft.Container(ESTUPDM,width=600, height=80, margin=ft.margin.only(top=0), border=ft.border.all())
+        #TPF= ft.Container(TPF,width=600, height=80, margin=ft.margin.only(top=20), bgcolor=ft.colors.AMBER_200, border=ft.border.all())
+        CIDU= ft.Container(IDU,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        #CIDC= ft.Container(IDC,width=600, height=80, margin=ft.margin.only(top=60), border=ft.border.all())
+        CCDC= ft.Container(CDC,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
+        #CNT= ft.Container(NT,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
+        CBTIAF= ft.Container(TDCC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        #CR= ft.Container(Regresar,width=60, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+        col= ft.Column(spacing=0, controls=[
+            #CR,
+            B,
+            ESTUPDM,
+            CIDU,
+         #   CIDC,
+            CCDC,
+          #  CNT,
+            CBTIAF
+        ])
+
+        contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
     
+        
+        page.add(contenedor)
+        #pagi.add()
+        page.update()
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     IDU = ft.TextField(
-        hint_text="Ingrese el nombre de usuario a utilizar",
+        hint_text="Ingrese su número de control",
         
-        )
-        
-    IDC = ft.TextField(
-        hint_text="Ingrese el correo electrónico"
-        )
-
+        )  
+    
     CDC = ft.TextField(
-        hint_text="Asigna una contraseña", password=True, can_reveal_password=True
+        hint_text="INGRESE SU CURP", password=True, can_reveal_password=True
         
         )
-        
-    NT = ft.TextField(
-        hint_text="Ingrese su número telefónico",
-        )
-
+    
     TNA = ft.Stack([
       ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
       ft.Text(
@@ -47,21 +144,30 @@ async def main(page: ft.Page):
       ft.Image(src="Mono.jpg")
     ])
 
+    def solonúmeros(e):       
+        if TSDU.value.isalpha():
+            TSDU.value=("")
+            page.update()
+
     TSDU = ft.TextField(
     hint_text="Usuario",
+    label="Introduzca el usuario",
+    on_change=solonúmeros,
     
     )
     
     TSDC = ft.TextField( 
-    hint_text="Contraseña", password=True, can_reveal_password=True
+    hint_text="Contraseña", password=True, can_reveal_password=True,
+    label="Introduzca la contraseña"
     )
+    
 ###################
 
     def usuariovalidao(event):
         IDU.value="Llenado"
-        IDC.value="Llenado"
+        #IDC.value="Llenado"
         CDC.value="Llenado"
-        NT.value="Llenado"
+        #NT.value="Llenado"
         a=mysql.connector.connect(user="root", password="", host="localhost", database="derinter", port="3306")
         print(a)
         busqueda_de_usuario= a.cursor()
@@ -71,7 +177,7 @@ async def main(page: ft.Page):
         busqueda_de_usuario.execute("SELECT * FROM usuario WHERE Usuario='"+TSDU.value+"' and Contraseña='"+TSDC.value+"'")
         #for dato in busqueda_de_usuario:
         #   print(dato)
-        if (not TSDU.value or not TSDC.value or not IDU.value or not IDC.value or not CDC.value or not NT.value):
+        if (not TSDU.value or not TSDC.value or not IDU.value):# or not IDC.value or not CDC.value or not NT.value):
             TSDU.error_text='Por favor, ingrese el dato'
             TSDC.error_text='Por favor, ingrese el dato'
             page.update()
@@ -137,7 +243,6 @@ async def main(page: ft.Page):
 
 
 
-
         def extras(e):
             page.clean(),
             page.title = "CONFIGURACIONES"
@@ -147,11 +252,77 @@ async def main(page: ft.Page):
             page.window_resizable = True
             page.padding = 0   
         #donativos,historial, fórmulas, tus búsquedas, favoritos, ¿buscas algo más?
+            def DonativosP(e):
+                Regresar=ft.Stack([
+                ft.IconButton(
+                icon=ft.icons.ARROW_CIRCLE_LEFT_OUTLINED,
+                top=0,
+                left=0,
+                scale=2,
+                on_click = extras
+                )
+                ])
+                ICONOSCONSTRUCCION1=ft.Stack([
+                ft.Icon(
+                name=ft.icons.ENGINEERING_SHARP,
+                #top=0,
+                #left=0,
+                scale=5,
+                )])
+                ICONOSCONSTRUCCION2=ft.Stack([
+                ft.Icon(
+                name=ft.icons.CONSTRUCTION_ROUNDED,
+                #top=125,
+                #left=0,
+                scale=5,
+                )
+                ])
+                ICONOSCONSTRUCCION3=ft.Stack([
+                ft.Icon(
+                name=ft.icons.FORKLIFT,
+                #top=250,
+                #left=0,
+                scale=5,
+                )
+                ])
+                page.clean(),
+                page.add()
+                page.title='Donativos'
+                page.window_width = 720
+                page.window_height = 1280
+                page.window_resizable = True
+                page.padding = 0
+                STDD=ft.Stack([
+                ft.Text(
+                value=" \n¡Agradecemos tu interés por querer\n realizar un donativo! Sin embargo,\n por el momento esta página sigue\n   en construcción para el futuro",
+                top=15,
+                left=40,
+                font_family="Franklin Gothic Book",
+                size=20,
+                #color=ft.colors.GREEN,
+                )
+                ])
+                CR= ft.Container(Regresar,width=60, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+                CTDD= ft.Container(STDD,width=400, height=200, margin=ft.margin.only(top=20, left=50), border=ft.border.all(4, ft.colors.GREEN) , alignment=ft.alignment.top_center,border_radius=50)
+                CIC1= ft.Container(ICONOSCONSTRUCCION1,width=200, height=50, margin=ft.margin.only(top=50,left=230))
+                CIC2= ft.Container(ICONOSCONSTRUCCION2,width=200, height=50, margin=ft.margin.only(top=80,left=230))
+                CIC3= ft.Container(ICONOSCONSTRUCCION3,width=200, height=50, margin=ft.margin.only(top=80,left=230))
+                col= ft.Column(spacing=0, controls=[
+                CR,
+                CTDD,
+                CIC1,
+                CIC2,
+                CIC3
+                ])
+
+                contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+                page.add(contenedor)
+            page.update()
             Donativos=ft.TextButton(
                 
         text="Donativos",
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
-        #on_click=usuariovalidao,
+        on_click=DonativosP,
         )
             Historial=ft.TextButton(
                 
@@ -161,20 +332,20 @@ async def main(page: ft.Page):
         )
             Fórmulas=ft.TextButton(
                 
-        text="Fórmulas",
+        text="Tus búsquedas",
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
         #on_click=usuariovalidao,
         )
             Tus_búsquedas=ft.TextButton(
                 
-        text="Tus búsquedas",
+        text="Favoritos",
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
         #on_click=usuariovalidao,
         )
             Favoritos=ft.TextButton(
                 
-        text="Favoritos",
-        style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+        #text="",
+        #style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
         #on_click=usuariovalidao,
         )
         #¿Buscas algo más?
@@ -199,7 +370,7 @@ async def main(page: ft.Page):
             C2= ft.Container(Historial,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
             C3= ft.Container(Fórmulas,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
             C4= ft.Container(Tus_búsquedas,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
-            C5= ft.Container(Favoritos,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
+            #C5= ft.Container(Favoritos,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
             C6= ft.Container(BAM,width=600, height=60, margin=ft.margin.only(top=200), border=ft.border.all())
             CFDU= ft.Container(CF,width=60, height=60, margin=ft.margin.only(top=-50, left=550), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
             col= ft.Column(spacing=0, controls=[
@@ -209,7 +380,7 @@ async def main(page: ft.Page):
         C2,
         C3,
         C4,
-        C5,
+        #C5,
         C6,
         ])
 
@@ -242,6 +413,7 @@ async def main(page: ft.Page):
         
         IP = ft.TextField(
         hint_text="Ingrese el problema",
+        label="Ingrese el problema",
         on_change=PI,
         #value=3
         )
@@ -450,7 +622,7 @@ async def main(page: ft.Page):
       left=320,
       top=12,
       style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
-      #on_click=Registrarse
+      on_click=Registrarse
     ),
       ft.Text(
           value="¿No tienes cuenta?",
