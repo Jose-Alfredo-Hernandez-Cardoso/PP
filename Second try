@@ -240,12 +240,6 @@ async def main(page: ft.Page):
             page.update()
             ##Error presentado, valida mal la información, el problema debe estar en el if
         
-        #Encuentra usuario en la BD derinter_registro
-        EC=mysql.connector.connect(user="root", password="", host="localhost", database="derinter_registro", port="3306")
-        print(EC)
-        Encuentra= EC.cursor()
-        sqlE=Encuentra.execute("SELECT * FROM derinter_reg WHERE no_control='"+IDU.value+"' and curp='"+CDC.value+"'")
-        #EC.close
 
 
 
