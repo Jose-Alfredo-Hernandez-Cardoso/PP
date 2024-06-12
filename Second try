@@ -28,7 +28,7 @@ async def main(page: ft.Page):
         
 
         B = ft.Stack([
-        ft.Container(width=600, height=140, top=0, left=0, bgcolor=ft.colors.WHITE),
+        ft.Container(width=600, height=140, top=0, left=0),
         ft.Text(
             value="ESTAMOS ORGULLOSOS DE QUE FORMES \n     PARTE DE NUESTRA COMUNIDAD",
             left=100,
@@ -36,36 +36,36 @@ async def main(page: ft.Page):
             text_align=ft.MainAxisAlignment.CENTER,
             #ft.alignment.top_center,
             size=22,
-            style=ft.TextStyle(color=ft.colors.BLACK)
+            #style=ft.TextStyle(color=ft.colors.BLACK)
             )
         ])
         
         ESTUPDM = ft.Stack([
-        ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE),
+        ft.Container(width=600, height=80, top=20, left=0), #bgcolor=ft.colors.WHITE),
         ft.Text(
             value="Esto solo tomará un par de minutos",
             left=170,
-            top=15,
+            top=20,
             text_align=ft.alignment.center,
             size=15,
-            style=ft.TextStyle(color=ft.colors.BLACK)
+#            style=ft.TextStyle(color=ft.colors.BLACK)
             )
         ])
 
         TDCC=ft.TextButton(
                     text="Crear cuenta",
-                    style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK, side=ft.border.all()),
+                    style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
                     on_click=TyC
                     )
         
-        B= ft.Container(B,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
-        ESTUPDM= ft.Container(ESTUPDM,width=600, height=80, margin=ft.margin.only(top=0), border=ft.border.all())
+        B= ft.Container(B,width=600, height=80, margin=ft.margin.only(top=60), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
+        ESTUPDM= ft.Container(ESTUPDM,width=600, height=80, margin=ft.margin.only(top=30), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
         #TPF= ft.Container(TPF,width=600, height=80, margin=ft.margin.only(top=20), bgcolor=ft.colors.AMBER_200, border=ft.border.all())
-        CIDU= ft.Container(IDU,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        CIDU= ft.Container(IDU,width=600, height=60, margin=ft.margin.only(top=60), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
         #CIDC= ft.Container(IDC,width=600, height=80, margin=ft.margin.only(top=60), border=ft.border.all())
-        CCDC= ft.Container(CDC,width=600, height=80, margin=ft.margin.only(top=70), border=ft.border.all())
+        CCDC= ft.Container(CDC,width=600, height=60, margin=ft.margin.only(top=30), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
         #CNT= ft.Container(NT,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())   
-        CBTIAF= ft.Container(TDCC,width=600, height=80, margin=ft.margin.only(top=40), border=ft.border.all())
+        CBTIAF= ft.Container(TDCC,width=600, height=80, margin=ft.margin.only(top=60), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
         #CR= ft.Container(Regresar,width=60, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
         col= ft.Column(spacing=0, controls=[
             #CR,
@@ -193,11 +193,13 @@ async def main(page: ft.Page):
 
     IDU = ft.TextField(
         hint_text="Ingrese su número de control",
+        border="none",
         on_change=solonúmeros
         )  
     
     CDC = ft.TextField(
         hint_text="INGRESE SU CURP", password=True, can_reveal_password=True,
+        border="none",
         on_change=solonúmeros
         )
     TSDU = ft.TextField(
@@ -285,7 +287,7 @@ async def main(page: ft.Page):
 
             
         def actualizar_historial():
-                histo_listview.controls.clear()
+                #histo_listview.controls.clear()
                 for item in histo:
                     histo_listview.controls.append(ft.Text(item))
         page.update()
@@ -294,7 +296,7 @@ async def main(page: ft.Page):
         def agregar(e):
             if IP.value.strip():
                 histo.append(IP.value.strip())
-                IP.value = ""
+                #IP.value = ""
                 actualizar_historial()
         histo_listview = ft.ListView(
         expand=True,
@@ -415,21 +417,9 @@ async def main(page: ft.Page):
                 )
                 ])
 
-
-
-
-
-
-
-
-
-
-
-
-
                 page.clean(),
                 page.add()
-                page.title='Historial'
+                page.title='Favoritos'
                 page.window_width = 720
                 page.window_height = 1280
                 page.window_resizable = True
@@ -444,6 +434,37 @@ async def main(page: ft.Page):
                 page.add(contenedor)
                 agregar(e)
                 page.update()
+
+
+
+            def BAMP(e):
+                Regresar=ft.Stack([
+                ft.IconButton(
+                icon=ft.icons.ARROW_CIRCLE_LEFT_OUTLINED,
+                icon_color=ft.colors.GREEN,
+                top=0,
+                left=0,
+                scale=2,
+                on_click = extras
+                )
+                ])
+                Redes=ft.Text("\nRedes sociales para comunicarse con los desarrolladores\nWhatsApp 1: 55 722 506 4013 \nWhatsApp 2: 55 6055 5073\nFacebook 1: José Nose Hernández\nFacebook 2: Pedro Albino")
+                page.clean(),
+                page.add()
+                page.title='Ayuda'
+                page.window_width = 720
+                page.window_height = 1280
+                page.window_resizable = True
+                page.padding = 0
+                CR= ft.Container(Regresar,width=60, height=60, margin=ft.margin.only(top=50),)
+                CTDD= ft.Container(Redes, width=400, height=200, margin=ft.margin.only(top=20, left=50), border=ft.border.all(4, ft.colors.GREEN) , alignment=ft.alignment.top_center,border_radius=50)
+                col= ft.Column(spacing=0, controls=[
+                CR,
+                CTDD
+                ])
+                contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+                page.add(contenedor)
+                page.update()
             
             Donativos=ft.TextButton(
                 
@@ -453,13 +474,13 @@ async def main(page: ft.Page):
         )
             Historial=ft.TextButton(
                 
-        text="Historial",
+        text="Favoritos",
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
         on_click=HistorialP,
         )
             Fórmulas=ft.TextButton(
                 
-        text="Tus búsquedas",
+        text="Fórmulas",
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
         #on_click=usuariovalidao,
         )
@@ -480,7 +501,7 @@ async def main(page: ft.Page):
                 
         text="¿Buscas algo más?",
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
-        #on_click=usuariovalidao,
+        on_click=BAMP,
         )
             Regresar=ft.Stack([
           ft.IconButton(
@@ -497,7 +518,7 @@ async def main(page: ft.Page):
             C1= ft.Container(Donativos,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
             C2= ft.Container(Historial,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
             C3= ft.Container(Fórmulas,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
-            C4= ft.Container(Tus_búsquedas,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
+            C4= ft.Container(width=600, height=60, margin=ft.margin.only(top=50), border_radius=50) #Tus_búsquedas,border=ft.border.all(4, ft.colors.GREEN),
             #C5= ft.Container(Favoritos,width=600, height=60, margin=ft.margin.only(top=50), border=ft.border.all())
             C6= ft.Container(BAM,width=600, height=60, margin=ft.margin.only(top=200), border=ft.border.all(4, ft.colors.GREEN),border_radius=50)
             CFDU= ft.Container(CF,width=60, height=60, margin=ft.margin.only(top=-50, left=550), border=ft.border.all(), alignment=ft.alignment.top_center,border_radius=200)
@@ -574,7 +595,7 @@ async def main(page: ft.Page):
 
         CYPDG= ft.Stack([
             ft.Text(
-            value="Creación y presentación de la gráfica",
+            value="Botónes para cambio de color",
             top=5,
             left=30
         )])        
