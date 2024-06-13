@@ -465,7 +465,50 @@ async def main(page: ft.Page):
                 contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
                 page.add(contenedor)
                 page.update()
-            
+
+
+            def FormulasP(e):
+                Regresar=ft.Stack([
+                ft.IconButton(
+                icon=ft.icons.ARROW_CIRCLE_LEFT_OUTLINED,
+                icon_color=ft.colors.GREEN,
+                top=0,
+                left=0,
+                scale=2,
+                on_click = extras
+                )
+                ])
+                CFD = ft.Stack([
+                ft.Image(src="Deriv.jpg")
+                ])
+                CFI = ft.Stack([
+                ft.Image(src="Integ.jpg")
+                ])
+                Scroll = ft.Column(scroll=ft.ScrollMode.ALWAYS,controls=[
+                CFD,
+                CFI  
+                ])
+
+                page.clean(),
+                page.add()
+                page.title='Fórmulas'
+                page.window_width = 720
+                page.window_height = 1280
+                page.window_resizable = True
+                page.padding = 0
+                CR= ft.Container(Regresar,width=60, height=60, margin=ft.margin.only(top=50),)
+                CTDD= ft.Container(Scroll, width=600, height=800, margin=ft.margin.only(top=20, left=50), border=ft.border.all(4, ft.colors.GREEN) , alignment=ft.alignment.top_center,border_radius=50)
+                col= ft.Column(spacing=0, controls=[
+                CR,
+                CTDD
+                ])
+                contenedor = ft.Container(col,width=720, height=1280, bgcolor=ft.colors.WHITE,alignment=ft.alignment.top_center)
+                page.add(contenedor)
+                page.update()
+
+
+
+                
             Donativos=ft.TextButton(
                 
         text="Donativos",
@@ -478,11 +521,10 @@ async def main(page: ft.Page):
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
         on_click=HistorialP,
         )
-            Fórmulas=ft.TextButton(
-                
+            Fórmulas=ft.TextButton(     
         text="Fórmulas",
         style=ft.ButtonStyle(bgcolor=ft.colors.WHITE,color=ft.colors.BLACK),
-        #on_click=usuariovalidao,
+        on_click=FormulasP,
         )
             Tus_búsquedas=ft.TextButton(
                 
@@ -599,40 +641,10 @@ async def main(page: ft.Page):
             top=5,
             left=30
         )])        
-
-
-
-#CMg= 
-
-
-        chart=        ft.DataTable(
-            columns=[
-                ft.DataColumn(ft.Text("Q"), numeric=True),
-                ft.DataColumn(ft.Text("CF"), numeric=True),
-                ft.DataColumn(ft.Text("CV"), numeric=True),
-                ft.DataColumn(ft.Text("CT"), numeric=True),
-                ft.DataColumn(ft.Text("CMg"), numeric=True),
-                ft.DataColumn(ft.Text("Renta"), numeric=True),
-                ft.DataColumn(ft.Text("𝝅"), numeric=True),
-            ],
-            rows=[
-                ft.DataRow(
-                    cells=[
-                        ft.DataCell(ft.Text("34")),
-                        ft.DataCell(ft.Text("543")),
-                        ft.DataCell(ft.Text("43")),
-                        ft.DataCell(ft.Text("43")),
-                        ft.DataCell(ft.Text("43")),
-                        ft.DataCell(ft.Text("43")),
-                        ft.DataCell(ft.Text("43")),
-                    ],
-                ),
-
-            ],
-        )
-    
-
         
+        Logo= ft.Stack([
+        ft.Image(src="Logo.jpg")
+         ])        
 
         
         Nota=ft.Text("Nota: ** significa potencia")
@@ -650,7 +662,7 @@ async def main(page: ft.Page):
 
 ##########
 
-        CG=ft.Container(chart,width=600, height=400, margin=ft.margin.only(top=20, left=50), border=ft.border.all(), alignment=ft.alignment.top_center)
+        CG=ft.Container(Logo,width=600, height=400, margin=ft.margin.only(top=20, left=50), alignment=ft.alignment.top_center)
 
         col= ft.Column(spacing=0, controls=[
         CS,
@@ -662,7 +674,7 @@ async def main(page: ft.Page):
         CCPDRI,
         CIC1,
         CPPSL,
-        CCYPDG,
+        #CCYPDG,
         CG
                         
         ])
