@@ -263,7 +263,7 @@ async def main(page: ft.Page):
         EF = ft.Stack([
         #ft.Container(width=600, height=80, top=0, left=0, bgcolor=ft.colors.WHITE, border=ft.border.all(),alignment=ft.alignment.top_center),
         ft.Text(
-            value="Encontrar fórmula",
+            value="",
             left=10,
             top=15,
 #            text_align=ft.alignment.center,
@@ -649,7 +649,7 @@ async def main(page: ft.Page):
         
         Nota=ft.Text("Nota: ** significa potencia")
 
-        CEF= ft.Container(EF,width=200, height=50, margin=ft.margin.only(top=-50, left=180), border=ft.border.all(4, ft.colors.GREEN),border_radius=50, alignment=ft.alignment.top_center)
+        CEF= ft.Container(EF,width=200, height=50, margin=ft.margin.only(top=-50, left=180), border_radius=50, alignment=ft.alignment.top_center)
         CS = ft.Container(Settings,width=50, height=50, margin=ft.margin.only(top=30, left=550), alignment=ft.alignment.top_center)
         CFDU= ft.Container(CF,width=50, height=50, margin=ft.margin.only(top=-50, left=20), border=ft.border.all(4, ft.colors.GREEN), alignment=ft.alignment.top_center,border_radius=200)
         CPPSL=ft.Container(PPLS,width=350, height=150, margin=ft.margin.only(top=-450, left=50), border=ft.border.all(4, ft.colors.GREEN),border_radius=50, alignment=ft.alignment.top_center)
